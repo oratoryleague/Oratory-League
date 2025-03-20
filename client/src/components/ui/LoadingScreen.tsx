@@ -26,26 +26,16 @@ export const LoadingScreen = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative">
-            {/* Logo */}
+          <div className="relative flex items-center justify-center">
+            {/* Circular loading animation - positioned behind the logo */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-32 h-32 relative"
-            >
-              <img 
-                src="/logo.png" 
-                alt="Oratory League Logo" 
-                className="w-full h-full object-contain"
-              />
-            </motion.div>
-
-            {/* Circular loading animation */}
-            <motion.div
-              className="absolute inset-0 border-4 border-transparent rounded-full"
+              className="absolute border-4 border-transparent rounded-full"
               style={{
+                width: '180px',
+                height: '180px',
                 borderTopColor: theme === 'dark' ? '#D4AF37' : '#D4AF37',
+                borderRightColor: theme === 'dark' ? '#D4AF37' : '#D4AF37',
+                opacity: 0.8
               }}
               animate={{ rotate: 360 }}
               transition={{
@@ -54,6 +44,20 @@ export const LoadingScreen = () => {
                 ease: "linear"
               }}
             />
+            
+            {/* Logo - centered in the loading circle */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-32 h-32 z-10"
+            >
+              <img 
+                src="/logo.png" 
+                alt="Oratory League Logo" 
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
           </div>
         </motion.div>
       )}

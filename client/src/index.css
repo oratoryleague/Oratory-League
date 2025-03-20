@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Font Declarations */
+@font-face {
+  font-family: 'Product Sans';
+  src: url('/fonts/Product Sans Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Product Sans';
+  src: url('/fonts/Product Sans Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Product Sans';
+  src: url('/fonts/Product Sans Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Product Sans';
+  src: url('/fonts/Product Sans Bold Italic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Boldonse';
+  src: url('/fonts/Boldonse-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 38 43% 95%;
@@ -23,7 +64,7 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 41 100% 34%;
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   .dark {
@@ -79,13 +120,19 @@
 
   /* Font families */
   .font-sans {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Product Sans', sans-serif;
   }
   .font-serif {
     font-family: 'Playfair Display', serif;
   }
   .font-display {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Boldonse', sans-serif;
+  }
+  .font-header {
+    font-family: 'Boldonse', sans-serif;
+  }
+  .font-paragraph {
+    font-family: 'Product Sans', sans-serif;
   }
 
   * {
@@ -95,6 +142,15 @@
   body {
     @apply font-sans antialiased;
     overflow-x: hidden;
+  }
+  
+  /* Apply font styles to specific elements */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Boldonse', sans-serif;
+  }
+  
+  p, a, li, span, div, button, input, textarea {
+    font-family: 'Product Sans', sans-serif;
   }
 
   /* Cursor */
@@ -175,6 +231,10 @@
     transform-style: preserve-3d;
     transform: perspective(1000px);
     transition: all 0.5s ease;
+  }
+  
+  .card {
+    @apply rounded-lg overflow-hidden;
   }
   
   .nav-item {
