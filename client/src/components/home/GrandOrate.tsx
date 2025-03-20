@@ -52,14 +52,14 @@ export const GrandOrate = () => {
             variants={itemVariants}
           >
             <motion.div 
-              className="tilt-card brutal-border bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 p-1"
+              className="tilt-card brutal-border card bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 p-1"
               whileHover={{ 
                 scale: 1.03,
                 rotateY: 15,
                 transition: { duration: 0.4 }
               }}
             >
-              <div className={`${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8`}>
+              <div className={`${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 card`}>
                 <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mb-6">The Grand Orate</h2>
                 <p className={`${theme === 'dark' ? 'text-white/80' : 'text-dark/80'} text-lg mb-6`}>Our flagship competition brings together the brightest minds from across the globe to debate critical issues facing our world today.</p>
                 <ul className="space-y-3 mb-8">
@@ -78,7 +78,7 @@ export const GrandOrate = () => {
                 </ul>
                 <motion.a 
                   href="#" 
-                  className="inline-block px-8 py-3 bg-gold text-dark font-bold hover:bg-goldLight transition-colors duration-300"
+                  className="inline-block px-8 py-3 bg-gold text-dark font-bold hover:bg-goldLight transition-colors duration-300 rounded-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -94,7 +94,7 @@ export const GrandOrate = () => {
             variants={itemVariants}
           >
             <motion.div 
-              className="w-full h-96 md:h-[500px] relative overflow-hidden tilt-card"
+              className="w-full h-96 md:h-[500px] relative overflow-hidden tilt-card card"
               whileHover={{ 
                 scale: 1.03,
                 rotateX: 5,

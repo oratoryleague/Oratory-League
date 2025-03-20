@@ -30,7 +30,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
         <div className={`${isRight ? 'hidden md:block' : ''}`}>
           {!isRight && (
             <motion.div 
-              className={`tilt-card brutal-border ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''}`}
+              className={`tilt-card brutal-border card event-card ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''}`}
               initial={{ x: isRight ? 50 : -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -60,7 +60,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
         <div className={`${!isRight ? 'hidden md:block' : ''}`}>
           {isRight && (
             <motion.div 
-              className={`tilt-card brutal-border ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''}`}
+              className={`tilt-card brutal-border card event-card ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''}`}
               initial={{ x: isRight ? 50 : -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
