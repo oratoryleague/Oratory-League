@@ -13,6 +13,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTheme } from "@/lib/theme";
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 function App() {
   const { theme } = useTheme();
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-dark text-white' : 'bg-lightBg text-dark'}`}>
+      <LoadingScreen />
       <CustomCursor />
       <ThemeToggle />
       <Navbar />

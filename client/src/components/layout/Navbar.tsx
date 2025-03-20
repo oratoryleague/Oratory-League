@@ -57,11 +57,11 @@ export const Navbar = () => {
               whileHover={{ scale: 1.05 }}
             >
               <motion.div
-                className="w-10 h-10 bg-gold rounded-sm flex items-center justify-center"
+                className="w-10 h-10 flex items-center justify-center"
                 whileHover={{ rotate: 45 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-dark font-bold text-xl">OL</span>
+                <img src="/logo.png" alt="Oratory League Logo" className="w-full h-full object-contain" />
               </motion.div>
               <motion.span
                 className="text-gold font-bold tracking-wider"
