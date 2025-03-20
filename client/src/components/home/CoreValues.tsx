@@ -14,7 +14,7 @@ const CoreValue = ({ number, title, description, delay }: CoreValueProps) => {
   
   return (
     <motion.div 
-      className={`core-values-card p-8 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-white/80'} border-l-4 border-gold hover:${theme === 'dark' ? 'bg-darkAccent/80' : 'bg-goldLight/50'} transition-all duration-300 transform hover:-translate-y-2`}
+      className={`core-value-card card p-8 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-white/80'} border-l-4 border-gold hover:${theme === 'dark' ? 'bg-darkAccent/80' : 'bg-goldLight/50'} transition-all duration-300 transform hover:-translate-y-2`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

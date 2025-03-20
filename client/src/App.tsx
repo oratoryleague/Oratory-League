@@ -14,10 +14,22 @@ import { useTheme } from "@/lib/theme";
 import { AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { applyCardStyles } from "@/lib/applyCardStyles";
+import { useEffect } from "react";
 
 function App() {
   const { theme } = useTheme();
   const [location] = useLocation();
+
+  // Apply card styles after component mounts and whenever location changes
+  useEffect(() => {
+    // Small delay to ensure DOM is fully loaded
+    const timer = setTimeout(() => {
+      applyCardStyles();
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [location]);
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-dark text-white' : 'bg-lightBg text-dark'}`}>

@@ -15,7 +15,7 @@ const CountryCard = ({ image, title, description, featuredCountries, delay }: Co
   
   return (
     <motion.div 
-      className={`${theme === 'dark' ? 'bg-darkAccent' : 'bg-white/90'} p-4 overflow-hidden group country-card`}
+      className={`${theme === 'dark' ? 'bg-darkAccent' : 'bg-white/90'} p-4 overflow-hidden group country-card card`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -113,7 +113,7 @@ export const GlobalReach = () => {
         
         {/* Interactive Map - Custom Illustration */}
         <motion.div 
-          className={`relative w-full h-[400px] md:h-[600px] brutal-border overflow-hidden ${theme === 'dark' ? 'bg-darkAccent' : 'bg-white/80'}`}
+          className={`relative w-full h-[400px] md:h-[600px] brutal-border overflow-hidden ${theme === 'dark' ? 'bg-darkAccent' : 'bg-white/80'} card`}
           variants={mapVariants}
           initial="hidden"
           animate={controls}
@@ -145,7 +145,7 @@ export const GlobalReach = () => {
           
           {/* Map Info Box */}
           <motion.div 
-            className={`absolute bottom-4 left-4 md:bottom-8 md:left-8 ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-6 max-w-sm brutal-border border-gold shadow-lg`}
+            className={`absolute bottom-4 left-4 md:bottom-8 md:left-8 ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-6 max-w-sm brutal-border border-gold shadow-lg card`}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
