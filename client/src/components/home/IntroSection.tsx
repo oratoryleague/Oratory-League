@@ -64,8 +64,8 @@ export const IntroSection = () => {
           initial="hidden"
           animate={controls}
         >
-          <h2 className="text-5xl md:text-7xl font-black font-serif mb-4">The Dawn Of A New Era</h2>
-          <p className="text-xl md:text-2xl font-sans">Empowering debaters worldwide through education, competition, and global networking.</p>
+          <h2 className="text-5xl md:text-7xl font-black font-header mb-4">The Dawn Of A New Era</h2>
+          <p className="text-xl md:text-2xl font-paragraph">Empowering debaters worldwide through education, competition, and global networking.</p>
         </motion.div>
         
         {/* Anti-design Grid */}

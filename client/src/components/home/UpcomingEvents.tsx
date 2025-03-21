@@ -17,11 +17,12 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
   return (
     <div className="relative mb-20">
       <motion.div 
-        className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-12 h-12 rounded-full bg-gold flex items-center justify-center text-dark font-bold"
+        className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-12 h-12 rounded-full bg-gold flex items-center justify-center text-dark font-bold z-10 shadow-lg"
         initial={{ scale: 0, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
+        whileHover={{ scale: 1.1, boxShadow: "0 0 15px rgba(174, 131, 0, 0.6)" }}
       >
         {number}
       </motion.div>
@@ -30,7 +31,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
         <div className={`${isRight ? 'hidden md:block' : ''}`}>
           {!isRight && (
             <motion.div 
-              className={`tilt-card brutal-border card event-card ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''}`}
+              className={`tilt-card brutal-border card event-card ${theme === 'dark' ? 'bg-dark' : 'bg-creamLight'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''} mt-3`}
               initial={{ x: isRight ? 50 : -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -46,7 +47,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
               <p className={`${theme === 'dark' ? 'text-white/80' : 'text-dark/80'} mb-6`}>{description}</p>
               <motion.a 
                 href="#" 
-                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-lg`}
+                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-full`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -60,7 +61,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
         <div className={`${!isRight ? 'hidden md:block' : ''}`}>
           {isRight && (
             <motion.div 
-              className={`tilt-card brutal-border card event-card ${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''}`}
+              className={`tilt-card brutal-border card event-card ${theme === 'dark' ? 'bg-dark' : 'bg-creamLight'} p-8 hover:${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} transition-colors duration-300 ${isRight ? 'md:text-right' : ''} mt-3`}
               initial={{ x: isRight ? 50 : -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -76,7 +77,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
               <p className={`${theme === 'dark' ? 'text-white/80' : 'text-dark/80'} mb-6`}>{description}</p>
               <motion.a 
                 href="#" 
-                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-lg`}
+                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-full`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -114,7 +115,7 @@ export const UpcomingEvents = () => {
   const bgBlendClass = theme === 'dark' ? 'from-gold/30 to-pink-500/30' : 'from-gold/50 to-pink-300/30';
 
   return (
-    <section className={`py-24 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight/30'} relative overflow-hidden`} ref={ref}>
+    <section className={`py-24 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-cream'} relative overflow-hidden`} ref={ref}>
       {/* Blended Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1577563908411-5077b6dc7624')] bg-cover bg-center"></div>
