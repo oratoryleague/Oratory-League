@@ -45,24 +45,24 @@
 
 @layer base {
   :root {
-    --background: 38 43% 95%;
+    --background: 40 70% 92%;
     --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
+    --card: 39 60% 90%;
     --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
+    --popover: 39 60% 90%;
     --popover-foreground: 240 10% 3.9%;
     --primary: 41 100% 34%;
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 49 77% 85%;
     --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
+    --muted: 41 38% 88%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
+    --accent: 41 38% 88%;
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
+    --border: 41 50% 80%;
+    --input: 41 50% 80%;
     --ring: 41 100% 34%;
     --radius: 1rem;
   }
@@ -103,6 +103,12 @@
     @apply bg-[#1e1e1e];
   }
   .bg-lightBg {
+    @apply bg-[#f4edda];
+  }
+  .bg-creamLight {
+    @apply bg-[#f6e6ba];
+  }
+  .bg-cream {
     @apply bg-[#f4edda];
   }
   .text-gold {
