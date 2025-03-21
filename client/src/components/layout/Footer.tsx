@@ -65,6 +65,9 @@ export const Footer = () => {
                 <a href="#" className="text-sm hover:text-gold transition-colors">Code of Conduct</a>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
+                <a href="/leadership" className="text-sm hover:text-gold transition-colors">Leadership</a>
+              </motion.li>
+              <motion.li whileHover={{ x: 5 }}>
                 <a href="#" className="text-sm hover:text-gold transition-colors">Report Misconduct</a>
               </motion.li>
             </ul>
