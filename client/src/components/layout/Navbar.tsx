@@ -66,6 +66,9 @@ export const Navbar = () => {
             <Link href="/resources">
               <a className={navItemClass("/resources")}>Resources</a>
             </Link>
+            <Link href="/leadership">
+              <a className={navItemClass("/leadership")}>Leadership</a>
+            </Link>
             <Link href="/about-us">
               <a className={navItemClass("/about-us")}>About Us</a>
             </Link>
@@ -163,6 +166,14 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Resources
+                </a>
+              </Link>
+              <Link href="/leadership">
+                <a 
+                  className={`p-2 ${isActive('/leadership') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Leadership
                 </a>
               </Link>
               <Link href="/about-us">

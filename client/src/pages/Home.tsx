@@ -8,6 +8,10 @@ import CoreValues from '@/components/home/CoreValues';
 import UpcomingEvents from '@/components/home/UpcomingEvents';
 import GlobalReach from '@/components/home/GlobalReach';
 import CallToAction from '@/components/home/CallToAction';
+import Partners from '@/components/home/Partners';
+import GrandOrateCountdown from '@/components/home/GrandOrateCountdown';
+import SponsorDonate from '@/components/home/SponsorDonate';
+import TopDebaters from '@/components/home/TopDebaters';
 
 const Home = () => {
   // Scroll to top on page load
@@ -26,10 +30,14 @@ const Home = () => {
       <main>
         <IntroSection />
         <WomensMonth />
-        <GrandOrate />
         <CoreValues />
+        <GrandOrate />
         <UpcomingEvents />
+        <GrandOrateCountdown />
+        <TopDebaters />
         <GlobalReach />
+        <SponsorDonate />
+        <Partners />
         <CallToAction />
       </main>
     </motion.div>
