@@ -7,7 +7,6 @@ import Resources from "@/pages/Resources";
 import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactUs";
 import Auth from "@/pages/Auth";
-import Leadership from "@/pages/Leadership";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
