@@ -1,63 +1,117 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTheme } from '@/lib/theme';
 
 export const Partners = () => {
+  const { theme } = useTheme();
+  const [partnerImages, setPartnerImages] = useState<string[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { ref, inView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     rootMargin: '-100px 0px'
   });
 
-  // Partner logos
-  const logos = [
-    { id: 1, name: 'Chamber of Commerce', path: '/attached_assets/coc.png' },
-    { id: 2, name: 'Greyed', path: '/attached_assets/greyed.png' },
-    { id: 3, name: 'Love Botswana', path: '/attached_assets/love botswana.png' },
-    { id: 4, name: 'HMCP', path: '/attached_assets/hmcp.png' },
-    { id: 5, name: 'WSA-B', path: '/attached_assets/wsa-b.png' },
-    { id: 6, name: 'Mogobe', path: '/attached_assets/mogobe.png' },
-    { id: 7, name: 'New Horizons', path: '/attached_assets/new horizons.png' },
-  ];
+  // Load partner logos
+  useEffect(() => {
+    // These would typically come from an API
+    const logos = [
+      "/attached_assets/coc.png",
+      "/attached_assets/hmcp.png",
+      "/attached_assets/mogobe.png",
+      "/attached_assets/new horizons.png",
+      "/attached_assets/wsa-b.png",
+      "/attached_assets/love botswana.png",
+      "/attached_assets/greyed.png",
+    ];
+    // Duplicate array to create infinite scroll effect
+    setPartnerImages([...logos, ...logos]);
+  }, []);
 
-  // Duplicate the array for seamless infinite scrolling
-  const duplicatedLogos = [...logos, ...logos];
+  // Scrolling animation
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const scrollAnimation = () => {
+      if (!containerRef.current) return;
+      
+      if (containerRef.current.scrollLeft >= containerRef.current.scrollWidth / 2) {
+        containerRef.current.scrollLeft = 0;
+      } else {
+        containerRef.current.scrollLeft += 1;
+      }
+    };
+    
+    const animationId = setInterval(scrollAnimation, 30);
+    
+    return () => {
+      clearInterval(animationId);
+    };
+  }, [partnerImages]);
 
   return (
-    <section ref={ref} className="relative py-20 overflow-hidden bg-cream">
-      <div className="container mx-auto px-4 mb-10">
-        <h2 className="text-4xl md:text-5xl font-header text-center mb-14 text-dark">
-          Our <span className="text-gold">Partners</span>
-        </h2>
-      </div>
-
-      {/* Infinite scrolling logos container */}
-      <div className="relative w-full overflow-hidden">
+    <section 
+      ref={ref}
+      className={`py-20 overflow-hidden ${theme === 'dark' ? 'bg-darkAccent' : 'bg-white'}`}
+    >
+      <div className="container mx-auto px-4">
         <motion.div
-          className="flex gap-12 items-center"
-          animate={{
-            x: inView ? [0, -1950] : 0
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 30,
-              ease: "linear"
-            }
-          }}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
         >
-          {duplicatedLogos.map((logo, index) => (
-            <div 
-              key={`${logo.id}-${index}`} 
-              className="flex-shrink-0 h-24 w-44 bg-white rounded-lg shadow-md p-4 flex items-center justify-center"
-            >
-              <img 
-                src={logo.path} 
-                alt={logo.name} 
-                className="max-h-16 max-w-full object-contain" 
-              />
+          <h2 className="text-4xl md:text-5xl font-header mb-4">
+            Our <span className="text-gold">Partners</span>
+          </h2>
+          <p className={`text-xl max-w-3xl mx-auto ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+            Collaborating with prestigious organizations to promote oratory excellence
+          </p>
+        </motion.div>
+        
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.3, duration: 0.7 }}
+        >
+          <div 
+            ref={containerRef} 
+            className="overflow-x-scroll scrollbar-hide"
+            style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex py-8" style={{ minWidth: 'max-content' }}>
+              {partnerImages.map((logo, index) => (
+                <div 
+                  key={index} 
+                  className="mx-8 flex items-center"
+                >
+                  <img 
+                    src={logo} 
+                    alt={`Partner ${index + 1}`} 
+                    className="h-16 sm:h-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+        </motion.div>
+        
+        <motion.div
+          className="text-center mt-14"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          <p className={`mb-5 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+            Interested in partnering with us?
+          </p>
+          <a 
+            href="/contact-us" 
+            className="inline-block bg-gold text-dark px-6 py-3 rounded-lg font-medium hover:bg-goldLight transition-colors"
+          >
+            Become a Partner
+          </a>
         </motion.div>
       </div>
     </section>
