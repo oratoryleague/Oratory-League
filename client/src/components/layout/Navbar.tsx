@@ -62,8 +62,8 @@ export const Navbar = () => {
         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
       >
         <div className="container mx-auto">
-          <div className={`${scrolled ? navBgClass : 'bg-transparent'} ${scrolled ? '' : 'rounded-full shadow-md'} p-3 transition-all duration-300`}>
-            <div className={`${scrolled ? '' : navBgClass} ${scrolled ? '' : 'rounded-full'} p-2 flex items-center justify-between`}>
+          <div className="rounded-full shadow-md p-3 transition-all duration-300 backdrop-blur-md">
+            <div className={`${navBgClass} rounded-full p-2 flex items-center justify-between`}>
               {/* Logo */}
               <Link href="/">
                 <motion.a
