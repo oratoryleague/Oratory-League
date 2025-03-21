@@ -62,17 +62,37 @@ export const Hero = () => {
     }
   };
 
+  // SVG path drawing animation for "THE LEAGUE" text
+  const pathVariants = {
+    hidden: {
+      pathLength: 0,
+      opacity: 0
+    },
+    visible: {
+      pathLength: 1,
+      opacity: 1,
+      transition: {
+        duration: 2,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "loop",
+        repeatDelay: 3
+      }
+    }
+  };
+
   return (
-    <section className="relative h-screen overflow-hidden bg-dark">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full">
+    <section className="relative h-screen w-screen overflow-hidden bg-dark m-0 p-0">
+      {/* Video Background - Full screen with no borders/rounded corners */}
+      <div className="absolute inset-0 w-full h-full m-0 p-0">
         <video 
           ref={videoRef}
           autoPlay 
           muted 
           loop 
           playsInline 
-          className="object-cover w-full h-full opacity-70"
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-70 m-0 p-0"
+          style={{ objectFit: 'cover' }}
         >
           <source src="/api/assets/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -80,7 +100,7 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
       </div>
       
-      {/* Brutalist Text Overlay */}
+      {/* Text Overlay with Animated Drawing Effect */}
       <div className="absolute inset-0 flex justify-center items-center">
         <motion.div
           className="relative text-center"
@@ -88,9 +108,41 @@ export const Hero = () => {
           animate="animate"
           variants={textVariants}
         >
-          <h1 className={`brutal-text text-9xl md:text-[15rem] font-black font-display uppercase leading-none tracking-tighter`}>
-            THE<br/>LEAGUE
-          </h1>
+          {/* Animated "THE LEAGUE" text */}
+          <motion.div className="relative">
+            <h1 className="text-7xl md:text-9xl font-light text-goldLight uppercase leading-none tracking-tighter">
+              <div className="relative">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="block"
+                >
+                  THE
+                </motion.span>
+                <svg className="w-full h-16 md:h-24 mt-2" viewBox="0 0 300 50">
+                  <motion.path
+                    d="M10,25 L70,25 M90,25 L150,25 M170,25 L230,25 M250,25 L290,25"
+                    stroke="#f5e6b9"
+                    strokeWidth="1"
+                    fill="none"
+                    variants={pathVariants}
+                    initial="hidden"
+                    animate="visible"
+                  />
+                </svg>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                  className="block"
+                >
+                  LEAGUE
+                </motion.span>
+              </div>
+            </h1>
+          </motion.div>
+          
           <motion.div 
             className="absolute -bottom-6 -right-4 w-24 h-24 md:w-32 md:h-32 rounded-full bg-gold"
             variants={orbVariants}
