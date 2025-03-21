@@ -119,7 +119,7 @@ export const Navbar = () => {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className={`md:hidden absolute top-full left-0 w-full ${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight'} p-4 shadow-lg`}
+              className={`md:hidden absolute top-full left-0 w-full ${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight'} p-4 shadow-lg rounded-b-lg`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
