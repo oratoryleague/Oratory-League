@@ -106,14 +106,15 @@ export const Navbar = () => {
                 
                 <ThemeToggle />
                 
-                <motion.a
-                  href="#"
-                  className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Join Now
-                </motion.a>
+                <Link href="/auth">
+                  <motion.a
+                    className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Join Now
+                  </motion.a>
+                </Link>
               </div>
 
               {/* Mobile Menu Button */}
@@ -211,7 +212,7 @@ export const Navbar = () => {
                       Contact
                     </a>
                   </Link>
-                  <Link href="#">
+                  <Link href="/auth">
                     <a 
                       className="p-2 text-gold font-medium"
                       onClick={() => setMobileMenuOpen(false)}

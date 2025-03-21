@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import { Link } from 'wouter';
 
 export const CallToAction = () => {
   const { theme } = useTheme();
@@ -75,26 +76,27 @@ export const CallToAction = () => {
           </motion.p>
           
           {/* Interactive CTA Button */}
-          <motion.a 
-            href="#" 
-            className={`inline-block px-10 py-5 ${theme === 'dark' ? 'bg-dark' : 'bg-darkAccent'} text-gold text-xl font-bold rounded-lg brutal-border ${theme === 'dark' ? 'border-dark hover:bg-darkAccent' : 'border-black hover:bg-dark'}`}
-            variants={itemVariants}
-            whileHover={{ 
-              scale: 1.05, 
-              rotate: 1,
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Become A Member
-            <motion.span 
-              className="inline-block ml-2"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
+          <Link href="/auth">
+            <motion.a 
+              className={`inline-block px-10 py-5 ${theme === 'dark' ? 'bg-dark' : 'bg-darkAccent'} text-gold text-xl font-bold rounded-lg brutal-border ${theme === 'dark' ? 'border-dark hover:bg-darkAccent' : 'border-black hover:bg-dark'} cursor-pointer`}
+              variants={itemVariants}
+              whileHover={{ 
+                scale: 1.05, 
+                rotate: 1,
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
+              }}
+              whileTap={{ scale: 0.95 }}
             >
-              →
-            </motion.span>
-          </motion.a>
+              Become A Member
+              <motion.span 
+                className="inline-block ml-2"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+              >
+                →
+              </motion.span>
+            </motion.a>
+          </Link>
         </motion.div>
       </div>
     </section>
