@@ -6,6 +6,7 @@ import Sponsorships from "@/pages/Sponsorships";
 import Resources from "@/pages/Resources";
 import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactUs";
+import Auth from "@/pages/Auth";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/resources" component={Resources} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contact-us" component={ContactUs} />
+          <Route path="/auth" component={Auth} />
           <Route component={NotFound} />
         </Switch>
       </AnimatePresence>
