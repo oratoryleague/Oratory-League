@@ -130,11 +130,11 @@ export const Footer = () => {
                 <input 
                   type="email" 
                   placeholder="Your email" 
-                  className={`px-4 py-2 w-full ${theme === 'dark' ? 'bg-darkAccent text-white' : 'bg-white text-dark'} border-l border-t border-b border-gold/30 focus:outline-none focus:border-gold`} 
+                  className={`px-4 py-2 w-full ${theme === 'dark' ? 'bg-darkAccent text-white' : 'bg-white text-dark'} border-l border-t border-b border-gold/30 focus:outline-none focus:border-gold rounded-l-lg`} 
                 />
                 <motion.button 
                   type="submit" 
-                  className="bg-gold text-dark px-4 py-2 hover:bg-goldLight transition-colors"
+                  className="bg-gold text-dark px-4 py-2 hover:bg-goldLight transition-colors rounded-r-lg"
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
