@@ -1,8 +1,6 @@
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
-import { FaFacebook, FaLinkedin, FaInstagram, FaXTwitter } from 'react-icons/fa6';
-import { PiThreadsLogoFill } from 'react-icons/pi';
 
 export const Footer = () => {
   const { theme } = useTheme();
@@ -94,7 +92,7 @@ export const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaFacebook className="w-5 h-5" />
+              <i className="fa-brands fa-facebook fa-lg"></i>
             </motion.a>
             <motion.a 
               href="https://www.linkedin.com/company/oratory-league/" 
@@ -104,7 +102,7 @@ export const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaLinkedin className="w-5 h-5" />
+              <i className="fa-brands fa-linkedin fa-lg"></i>
             </motion.a>
             <motion.a 
               href="https://www.threads.net/@oratory_league" 
@@ -114,7 +112,7 @@ export const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <PiThreadsLogoFill className="w-5 h-5" />
+              <i className="fa-brands fa-threads fa-lg"></i>
             </motion.a>
             <motion.a 
               href="https://www.instagram.com/oratory_league" 
@@ -124,7 +122,7 @@ export const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaInstagram className="w-5 h-5" />
+              <i className="fa-brands fa-instagram fa-lg"></i>
             </motion.a>
             <motion.a 
               href="https://x.com/OratoryLeague/" 
@@ -134,7 +132,7 @@ export const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaXTwitter className="w-5 h-5" />
+              <i className="fa-brands fa-x-twitter fa-lg"></i>
             </motion.a>
           </div>
         </div>
