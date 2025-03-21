@@ -46,7 +46,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
               <p className={`${theme === 'dark' ? 'text-white/80' : 'text-dark/80'} mb-6`}>{description}</p>
               <motion.a 
                 href="#" 
-                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300`}
+                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-lg`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -76,7 +76,7 @@ const Event = ({ number, title, dates, location, description, isRight = false }:
               <p className={`${theme === 'dark' ? 'text-white/80' : 'text-dark/80'} mb-6`}>{description}</p>
               <motion.a 
                 href="#" 
-                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300`}
+                className={`inline-block px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300 rounded-lg`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -59,7 +59,7 @@ export const IntroSection = () => {
       <div className="container mx-auto px-4">
         {/* Brutalist Heading */}
         <motion.div
-          className={`mb-12 brutal-border ${theme === 'dark' ? 'bg-white text-dark' : 'bg-dark text-white'} p-8 transform -rotate-1 max-w-4xl mx-auto`}
+          className={`mb-12 brutal-border card ${theme === 'dark' ? 'bg-white text-dark' : 'bg-dark text-white'} p-8 transform -rotate-1 max-w-4xl mx-auto`}
           variants={itemVariants}
           initial="hidden"
           animate={controls}
@@ -81,7 +81,7 @@ export const IntroSection = () => {
             variants={itemVariants}
           >
             <motion.div 
-              className={`${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight'} p-6 brutal-border border-gold transform rotate-2 hover:rotate-0 transition-transform duration-300`}
+              className={`${theme === 'dark' ? 'bg-darkAccent' : 'bg-goldLight'} p-6 brutal-border card border-gold transform rotate-2 hover:rotate-0 transition-transform duration-300`}
               whileHover={{ y: -10 }}
             >
               <h3 className="text-3xl font-bold text-gold mb-2">Purpose</h3>
@@ -91,7 +91,7 @@ export const IntroSection = () => {
           
           {/* Column 2 - Image */}
           <motion.div 
-            className="md:col-span-1 overflow-hidden h-80 md:h-auto tilt-card"
+            className="md:col-span-1 overflow-hidden h-80 md:h-auto tilt-card card"
             variants={itemVariants}
             whileHover={{ 
               scale: 1.05, 
@@ -112,7 +112,7 @@ export const IntroSection = () => {
             variants={itemVariants}
           >
             <motion.div 
-              className="bg-gold p-8 text-dark transform -rotate-1 hover:rotate-0 transition-transform duration-300"
+              className="bg-gold p-8 text-dark card transform -rotate-1 hover:rotate-0 transition-transform duration-300"
               whileHover={{ y: -10 }}
             >
               <h3 className="text-4xl font-bold mb-4">This is <br/>Oratory League</h3>
