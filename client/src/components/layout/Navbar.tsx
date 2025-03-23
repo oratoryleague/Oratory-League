@@ -15,8 +15,8 @@ export const Navbar = () => {
   };
 
   const navBgClass = theme === 'dark' 
-    ? 'bg-dark' 
-    : 'bg-cream';
+    ? 'bg-dark/75' 
+    : 'bg-cream/75';
 
   const navTextClass = theme === 'dark' 
     ? 'text-white' 
@@ -31,9 +31,9 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="w-full z-50 transition-all duration-300">
+    <nav className="w-full fixed top-0 z-50 transition-all duration-300 px-4 py-2">
       <div className="container mx-auto">
-        <div className={`${navBgClass} p-4 flex items-center justify-between`}>
+        <div className={`${navBgClass} p-4 rounded-full backdrop-blur-sm flex items-center justify-between shadow-lg`}>
           {/* Logo */}
           <Link href="/">
             <motion.a
@@ -48,7 +48,7 @@ export const Navbar = () => {
                 <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
               </motion.div>
               <motion.span
-                className="text-gold font-bold"
+                className="text-gold font-bold font-['Boldonse']"
                 transition={{ duration: 0.3 }}
               >
                 Oratory League
