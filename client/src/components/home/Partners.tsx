@@ -3,6 +3,15 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTheme } from '@/lib/theme';
 
+// Import partner logos
+import cocLogo from '/img/partners/coc.png';
+import hmcpLogo from '/img/partners/hmcp.png';
+import mogobeLogo from '/img/partners/mogobe.png';
+import newHorizonsLogo from '/img/partners/new horizons.png';
+import wsaLogo from '/img/partners/wsa-b.png';
+import loveBotswanaLogo from '/img/partners/love botswana.png';
+import greyedLogo from '/img/partners/greyed.png';
+
 export const Partners = () => {
   const { theme } = useTheme();
   const [partnerImages, setPartnerImages] = useState<string[]>([]);
@@ -14,15 +23,14 @@ export const Partners = () => {
 
   // Load partner logos
   useEffect(() => {
-    // These would typically come from an API
     const logos = [
-      "/assets/img/coc.png",
-      "/assets/img/hmcp.png",
-      "/assets/img/mogobe.png",
-      "/assets/img/new horizons.png",
-      "/assets/img/wsa-b.png",
-      "/assets/img/love botswana.png",
-      "/assets/img/greyed.png",
+      cocLogo,
+      hmcpLogo,
+      mogobeLogo,
+      newHorizonsLogo,
+      wsaLogo,
+      loveBotswanaLogo,
+      greyedLogo,
     ];
     // Duplicate array to create infinite scroll effect
     setPartnerImages([...logos, ...logos]);
