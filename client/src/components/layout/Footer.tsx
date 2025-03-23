@@ -1,6 +1,7 @@
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import logoImage from '@/assets/img/logo.png';
 
 export const Footer = () => {
   const { theme } = useTheme();
@@ -79,7 +80,7 @@ export const Footer = () => {
             <Link href="/">
               <a className="flex items-center space-x-2 cursor-pointer">
                 <div className="w-6 h-6 flex items-center justify-center">
-                  <img src="/logo.png" alt="Oratory League Logo" className="w-full h-full object-contain" />
+                  <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
                 </div>
               </a>
             </Link>

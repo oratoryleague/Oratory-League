@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import logoImage from '@/assets/img/logo.png';
 
 export const LoadingScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +54,7 @@ export const LoadingScreen = () => {
               className="w-32 h-32 z-10"
             >
               <img 
-                src="/logo.png" 
+                src={logoImage} 
                 alt="Oratory League Logo" 
                 className="w-full h-full object-contain"
               />

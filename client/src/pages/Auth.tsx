@@ -5,6 +5,7 @@ import { useTheme } from '@/lib/theme';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import logoImage from '@/assets/img/logo.png';
 
 // Define form schemas
 const loginSchema = z.object({
@@ -158,7 +159,7 @@ const Auth = () => {
         className={`max-w-md w-full ${cardBgClass} rounded-2xl shadow-lg p-8`}
       >
         <div className="flex justify-center mb-6">
-          <img src="/logo.png" alt="Oratory League Logo" className="h-16 w-16" />
+          <img src={logoImage} alt="Oratory League Logo" className="h-16 w-16" />
         </div>
         
         <h2 className="text-2xl font-bold text-gold text-center mb-6">

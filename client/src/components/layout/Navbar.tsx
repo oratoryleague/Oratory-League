@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,7 +45,7 @@ export const Navbar = () => {
                 whileHover={{ rotate: 45 }}
                 transition={{ duration: 0.3 }}
               >
-                <img src="/logo.png" alt="Oratory League Logo" className="w-full h-full object-contain" />
+                <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
               </motion.div>
               <motion.span
                 className="text-gold font-bold"
