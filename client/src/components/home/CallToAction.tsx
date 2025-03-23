@@ -7,13 +7,16 @@ export const CallToAction = () => {
   const { theme } = useTheme();
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
+  const { inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '50px'
+  });
   
   useEffect(() => {
-    if (isInView) {
+    if (inView) {
       controls.start('visible');
     }
-  }, [controls, isInView]);
+  }, [controls, inView]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

@@ -42,10 +42,8 @@ export default function Hero() {
           <motion.div 
             className="absolute -bottom-6 -right-4 w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary"
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            animate={{
-              scale: [1, 1.2, 1],
+            animate={{ 
+              scale: [1, 1.2, 1]
             }}
             transition={{
               duration: 2,
@@ -67,7 +65,7 @@ export default function Hero() {
         <motion.div 
           className="w-px h-12 bg-primary"
           animate={{
-            y: [0, 10, 0],
+            y: [0, 10, 0]
           }}
           transition={{
             duration: 2,

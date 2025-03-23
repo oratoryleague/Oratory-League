@@ -65,28 +65,22 @@ export const GlobalReach = () => {
     }
   };
 
-  const hotspotVariants = {
-    hidden: { scale: 0, opacity: 0 },
+  const cardVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
     visible: (custom: number) => ({
       scale: 1,
       opacity: 1,
-      transition: { 
-        delay: 0.5 + (custom * 0.15), 
-        duration: 0.4, 
-        ease: "easeOut" 
+      transition: {
+        delay: custom * 0.2,
+        duration: 0.5,
+        ease: "easeOut"
       }
     }),
-    hover: { 
-      scale: 1.5, 
-      transition: { duration: 0.3 } 
-    },
-    pulse: {
-      scale: [1, 1.2, 1],
-      opacity: [1, 0.7, 1],
+    hover: {
+      scale: 1.05,
       transition: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "reverse"
+        duration: 0.2,
+        ease: "easeInOut"
       }
     }
   };
@@ -131,10 +125,10 @@ export const GlobalReach = () => {
               <motion.div
                 key={region.id}
                 className={`absolute ${region.position} w-6 h-6 bg-gold rounded-full cursor-pointer`}
-                variants={hotspotVariants}
+                variants={cardVariants}
                 custom={index}
                 initial="hidden"
-                animate={[controls, "pulse"]}
+                animate={[controls, "hover"]}
                 whileHover="hover"
                 data-region={region.name}
                 onMouseEnter={() => setActiveRegion(region.name)}
