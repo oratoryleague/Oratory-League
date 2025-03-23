@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import botswanaStadiumImage from '@/assets/img/botswana-national-stadium.jfif';
 
 export const GrandOrate = () => {
   const { theme } = useTheme();
@@ -102,14 +103,14 @@ export const GrandOrate = () => {
                 transition: { duration: 0.4 }
               }}
             >
-              <img src="/api/assets/grand-orate.jpg" alt="Featured" className="w-full h-full object-cover" />
+              <img src={botswanaStadiumImage} alt="Featured" className="w-full h-full object-cover" />
               
               {/* Brutalist Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full p-6">
                 <div className="w-1/2 h-1 bg-gold mb-4"></div>
-                <h3 className="text-3xl font-bold text-white">June 2024</h3>
-                <p className="text-white/80">Nairobi, Kenya</p>
+                <h3 className="text-3xl font-bold text-white">December 2025</h3>
+                <p className="text-white/80">Gaborone, Botswana</p>
               </div>
               
               {/* Floating Decorative Elements */}
