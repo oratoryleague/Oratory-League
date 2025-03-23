@@ -109,8 +109,8 @@ export const GrandOrate = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full p-6">
                 <div className="w-1/2 h-1 bg-gold mb-4"></div>
-                <h3 className="text-3xl font-bold text-white">December 2025</h3>
-                <p className="text-white/80">Gaborone, Botswana</p>
+                <h3 className="text-3xl font-bold text-dark">December 2025</h3>
+                <p className="text-dark/80">Gaborone, Botswana</p>
               </div>
               
               {/* Floating Decorative Elements */}
