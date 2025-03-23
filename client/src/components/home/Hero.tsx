@@ -76,7 +76,7 @@ export const Hero = () => {
         ease: "easeInOut",
         repeat: Infinity,
         repeatType: "loop",
-        repeatDelay: 3
+        repeatDelay: 0.5
       }
     }
   };

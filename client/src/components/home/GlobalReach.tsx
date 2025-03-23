@@ -38,7 +38,10 @@ export const GlobalReach = () => {
   const { theme } = useTheme();
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.1
+  });
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
   
   useEffect(() => {
@@ -128,7 +131,7 @@ export const GlobalReach = () => {
                 variants={cardVariants}
                 custom={index}
                 initial="hidden"
-                animate={[controls, "hover"]}
+                animate={controls}
                 whileHover="hover"
                 data-region={region.name}
                 onMouseEnter={() => setActiveRegion(region.name)}
