@@ -141,7 +141,7 @@ export const UpcomingEvents = () => {
           <Event 
             number="1"
             title="Navigating Transformations Together"
-            dates="12th May 2025"
+            dates="12th April 2025"
             location="Gaborone, University of Botswana (Conference Centre)"
             description="We are brining 75 young mothers from diverse backgrounds and professions for an empowering, heart to heart conversation on balancing motherhood with personal and professional success."
           />
