@@ -25,6 +25,18 @@
       "dest": "/assets/$1"
     },
     {
+      "src": "/fonts/(.*)",
+      "dest": "/assets/fonts/$1"
+    },
+    {
+      "src": "/img/(.*)",
+      "dest": "/assets/img/$1"
+    },
+    {
+      "src": "/videos/(.*)",
+      "dest": "/assets/videos/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
