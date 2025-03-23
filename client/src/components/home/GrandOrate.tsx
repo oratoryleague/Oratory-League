@@ -7,7 +7,7 @@ export const GrandOrate = () => {
   const { theme } = useTheme();
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
