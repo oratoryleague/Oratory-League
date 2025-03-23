@@ -140,29 +140,29 @@ export const UpcomingEvents = () => {
           {/* Event 1 */}
           <Event 
             number="1"
-            title="African Regional Qualifiers"
-            dates="May 15-18, 2024"
-            location="Lagos, Nigeria"
-            description="Preliminary competitions to select top debaters from across the African continent for The Grand Orate."
+            title="Navigating Transformations Together"
+            dates="12th May 2025"
+            location="Gaborone, University of Botswana (Conference Centre)"
+            description="We are brining 75 young mothers from diverse backgrounds and professions for an empowering, heart to heart conversation on balancing motherhood with personal and professional success."
           />
           
           {/* Event 2 */}
           <Event 
             number="2"
-            title="The Grand Orate"
-            dates="June 25-30, 2024"
-            location="Nairobi, Kenya"
-            description="Our flagship international competition bringing together the world's top debaters to compete for prestigious awards."
+            title="Reset for Teens Camp"
+            dates="1 - 5 May 2025"
+            location="Palapye, Norman's Land Farm"
+            description="Bringing teenagers from aound Botswana together, for workouts, personal development seminars, swiming, vision for the future, oratory training and debate."
             isRight={true}
           />
           
           {/* Event 3 */}
           <Event 
             number="3"
-            title="Virtual Masterclass Series"
-            dates="July-August 2024"
-            location="Online"
-            description="A series of workshops led by world-renowned debaters and public speakers, focusing on advanced oratory techniques."
+            title="The Grand Orate"
+            dates="December 2025"
+            location="Gaborone, Botswana"
+            description="Our flagship competition brings together the brightest minds from across the globe to debate critical issues facing our world today."
           />
         </div>
       </div>
