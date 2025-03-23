@@ -16,13 +16,13 @@ export const Partners = () => {
   useEffect(() => {
     // These would typically come from an API
     const logos = [
-      "/attached_assets/coc.png",
-      "/attached_assets/hmcp.png",
-      "/attached_assets/mogobe.png",
-      "/attached_assets/new horizons.png",
-      "/attached_assets/wsa-b.png",
-      "/attached_assets/love botswana.png",
-      "/attached_assets/greyed.png",
+      "client/public/img/partners/coc.png",
+      "client/public/img/partners/hmcp.png",
+      "client/public/img/partners/mogobe.png",
+      "client/public/img/partners/new horizons.png",
+      "client/public/img/partners/wsa-b.png",
+      "client/public/img/partners/love botswana.png",
+      "client/public/img/partners/greyed.png",
     ];
     // Duplicate array to create infinite scroll effect
     setPartnerImages([...logos, ...logos]);
@@ -77,10 +77,9 @@ export const Partners = () => {
         >
           <div 
             ref={containerRef} 
-            className="overflow-x-scroll scrollbar-hide"
-            style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="partner-container"
           >
-            <div className="flex py-8" style={{ minWidth: 'max-content' }}>
+            <div className="flex py-8 partner-logos">
               {partnerImages.map((logo, index) => (
                 <div 
                   key={index} 
