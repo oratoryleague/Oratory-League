@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import heroVideo from '@/assets/videos/hero.mp4';
 
 export const Hero = () => {
   const { theme } = useTheme();
@@ -87,16 +88,14 @@ export const Hero = () => {
       <div className="absolute inset-0 w-full h-full m-0 p-0">
         <video 
           ref={videoRef}
+          src={heroVideo}
           autoPlay 
-          muted 
           loop 
+          muted 
           playsInline 
           className="absolute top-0 left-0 w-full h-full object-cover opacity-70 m-0 p-0"
           style={{ objectFit: 'cover' }}
-        >
-          <source src="/api/assets/hero.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        ></video>
         <div className="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
       </div>
       
