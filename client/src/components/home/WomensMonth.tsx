@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import bashomaImage from '@/assets/img/bashoma.jpg';
-import sekgewamaImage from '@/assets/img/sekgwama.jpg';
+import sekgwamaImage from '@/assets/img/sekgwama.jpg';
 import publicSpeakerImage from '@/assets/img/Public Speaker-1.jpg';
 import baganaletsoImage from '@/assets/img/baganaletso.jpg';
 
@@ -100,7 +100,7 @@ export const WomensMonth = () => {
                 initial="rest"
                 whileHover="hover"
               >
-                <img src={sekgewamaImage} alt="Sekgewama" className="w-full h-full object-cover" />
+                <img src={sekgwamaImage} alt="Sekgwama" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div 
                 className={`aspect-square ${theme === 'dark' ? 'bg-pink-800/50' : 'bg-pink-200'} rounded overflow-hidden`}
