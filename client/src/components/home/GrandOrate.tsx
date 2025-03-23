@@ -110,7 +110,7 @@ export const GrandOrate = () => {
               <div className="absolute bottom-0 left-0 w-full p-6">
                 <div className="w-1/2 h-1 bg-gold mb-4"></div>
                 <h3 className="text-3xl font-bold text-goldLight">December 2025</h3>
-                <p className="text-goldLight/90">Gaborone, Botswana</p>
+                <p className="text-goldLight">Gaborone, Botswana</p>
               </div>
               
               {/* Floating Decorative Elements */}
