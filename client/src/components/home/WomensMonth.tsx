@@ -1,6 +1,10 @@
 import { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import bashomaImage from '@/assets/img/bashoma.jpg';
+import sekgewamaImage from '@/assets/img/sekgwama.jpg';
+import publicSpeakerImage from '@/assets/img/Public Speaker-1.jpg';
+import baganaletsoImage from '@/assets/img/baganaletso.jpg';
 
 export const WomensMonth = () => {
   const { theme } = useTheme();
@@ -88,7 +92,7 @@ export const WomensMonth = () => {
                 initial="rest"
                 whileHover="hover"
               >
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Woman speaker" className="w-full h-full object-cover" />
+                <img src={bashomaImage} alt="Bashoma" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div 
                 className={`aspect-square ${theme === 'dark' ? 'bg-pink-800/50' : 'bg-pink-200'} rounded overflow-hidden md:mt-8`}
@@ -96,7 +100,7 @@ export const WomensMonth = () => {
                 initial="rest"
                 whileHover="hover"
               >
-                <img src="https://images.unsplash.com/photo-1607748862156-7c548e7e98f4" alt="Woman leader" className="w-full h-full object-cover" />
+                <img src={sekgewamaImage} alt="Sekgewama" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div 
                 className={`aspect-square ${theme === 'dark' ? 'bg-pink-800/50' : 'bg-pink-200'} rounded overflow-hidden`}
@@ -104,7 +108,7 @@ export const WomensMonth = () => {
                 initial="rest"
                 whileHover="hover"
               >
-                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad" alt="Women collaborating" className="w-full h-full object-cover" />
+                <img src={publicSpeakerImage} alt="Public Speaker" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div 
                 className={`aspect-square ${theme === 'dark' ? 'bg-pink-800/50' : 'bg-pink-200'} rounded overflow-hidden md:mt-8`}
@@ -112,7 +116,7 @@ export const WomensMonth = () => {
                 initial="rest"
                 whileHover="hover"
               >
-                <img src="https://images.unsplash.com/photo-1588615419966-0c0f3dc5bfae" alt="Women empowerment" className="w-full h-full object-cover" />
+                <img src={baganaletsoImage} alt="Baganaletso" className="w-full h-full object-cover" />
               </motion.div>
             </motion.div>
             
