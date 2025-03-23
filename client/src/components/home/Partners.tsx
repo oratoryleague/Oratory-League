@@ -16,13 +16,13 @@ export const Partners = () => {
   useEffect(() => {
     // These would typically come from an API
     const logos = [
-      "client/public/img/partners/coc.png",
-      "client/public/img/partners/hmcp.png",
-      "client/public/img/partners/mogobe.png",
-      "client/public/img/partners/new horizons.png",
-      "client/public/img/partners/wsa-b.png",
-      "client/public/img/partners/love botswana.png",
-      "client/public/img/partners/greyed.png",
+      "/img/partners/coc.png",
+      "/img/partners/hmcp.png",
+      "/img/partners/mogobe.png",
+      "/img/partners/new horizons.png",
+      "/img/partners/wsa-b.png",
+      "/img/partners/love botswana.png",
+      "/img/partners/greyed.png",
     ];
     // Duplicate array to create infinite scroll effect
     setPartnerImages([...logos, ...logos]);
