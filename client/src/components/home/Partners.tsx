@@ -4,13 +4,13 @@ import { useInView } from 'react-intersection-observer';
 import { useTheme } from '@/lib/theme';
 
 // Import partner logos
-import cocLogo from '/img/partners/coc.png';
-import hmcpLogo from '/img/partners/hmcp.png';
-import mogobeLogo from '/img/partners/mogobe.png';
-import newHorizonsLogo from '/img/partners/new horizons.png';
-import wsaLogo from '/img/partners/wsa-b.png';
-import loveBotswanaLogo from '/img/partners/love botswana.png';
-import greyedLogo from '/img/partners/greyed.png';
+import cocLogo from '../../../public/img/partners/coc.png';
+import hmcpLogo from '../../../public/img/partners/hmcp.png';
+import mogobeLogo from '../../../public/img/partners/mogobe.png';
+import newHorizonsLogo from '../../../public/img/partners/new horizons.png';
+import wsaLogo from '../../../public/img/partners/wsa-b.png';
+import loveBotswanaLogo from '../../../public/img/partners/love botswana.png';
+import greyedLogo from '../../../public/img/partners/greyed.png';
 
 export const Partners = () => {
   const { theme } = useTheme();
