@@ -1,12 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import homeBanner from '@/assets/img/home-banner.png';
 
 export const IntroSection = () => {
   const { theme } = useTheme();
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.2 });
+  const isInView = useInView(ref, { once: true });
   
   useEffect(() => {
     if (isInView) {
@@ -100,8 +101,8 @@ export const IntroSection = () => {
             }}
           >
             <img 
-              src="/api/assets/home-banner.png" 
-              alt="2024 ORATE AFRICA DELEGATION" 
+              src={homeBanner} 
+              alt="2024 ASDC National Debate Champion (Left - Leatile King Baaitse), and 2024 ASDC National Public Speaking 1st Runner-up Champion (Right - Tinashe Pako Mapete)" 
               className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" 
             />
           </motion.div>
