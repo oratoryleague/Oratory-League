@@ -21,78 +21,52 @@ export default function Navbar() {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg"
+          ? "bg-[#1a1a1a]/85 backdrop-blur-sm shadow-lg"
           : "bg-[#1a1a1a]/85 backdrop-blur-sm"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/">
-            <a className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-2xl">OL</span>
-              </div>
-              <span className="text-primary font-bold text-xl tracking-wider">
-                ORATORY LEAGUE
-              </span>
-            </a>
-          </Link>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/' ? 'text-accent font-semibold' : ''
-              }`}>
-                HOME
-              </a>
-            </Link>
-            <Link href="/about-us">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/about-us' ? 'text-accent font-semibold' : ''
-              }`}>
-                ABOUT
-              </a>
-            </Link>
-            <Link href="/events">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/events' ? 'text-accent font-semibold' : ''
-              }`}>
-                EVENTS
-              </a>
-            </Link>
-            <Link href="/resources">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/resources' ? 'text-accent font-semibold' : ''
-              }`}>
-                RESOURCES
-              </a>
-            </Link>
-            <Link href="/contact-us">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/contact-us' ? 'text-accent font-semibold' : ''
-              }`}>
-                CONTACT
-              </a>
-            </Link>
-            <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-              JOIN NOW
-            </button>
-          </div>
-          
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-primary hover:text-accent transition-colors"
+      <div className="container mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/">
+          <a className="flex items-center space-x-2 group">
+            <motion.div 
+              className="w-10 h-10 bg-primary rounded-sm flex items-center justify-center"
+              whileHover={{ rotate: 45 }}
+              transition={{ duration: 0.3 }}
             >
-              {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-            </button>
-          </div>
+              <span className="text-primary-foreground font-bold text-xl">OL</span>
+            </motion.div>
+            <motion.span 
+              className="text-primary font-bold tracking-wider"
+              whileHover={{ letterSpacing: '0.2em' }}
+              transition={{ duration: 0.3 }}
+            >
+              ORATORY LEAGUE
+            </motion.span>
+          </a>
+        </Link>
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
+          <NavLink href="/" isActive={location === '/'}>HOME</NavLink>
+          <NavLink href="/sponsorships" isActive={location === '/sponsorships'}>SPONSORSHIPS</NavLink>
+          <NavLink href="/resources" isActive={location === '/resources'}>RESOURCES</NavLink>
+          <NavLink href="/about-us" isActive={location === '/about-us'}>ABOUT US</NavLink>
+          <NavLink href="/contact-us" isActive={location === '/contact-us'}>CONTACT</NavLink>
+        </div>
+        
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <motion.button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-primary hover:text-accent transition-colors"
+            whileTap={{ scale: 0.9 }}
+          >
+            {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          </motion.button>
         </div>
       </div>
       
@@ -100,73 +74,53 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden bg-[#1a1a1a]/95 backdrop-blur-md"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden absolute top-full left-0 w-full bg-[#1a1a1a]/85 backdrop-blur-sm shadow-lg"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="container mx-auto px-4 py-4 space-y-4">
-              <Link href="/">
-                <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/' ? 'text-accent font-semibold' : ''
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  HOME
-                </a>
-              </Link>
-              <Link href="/about-us">
-                <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/about-us' ? 'text-accent font-semibold' : ''
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  ABOUT
-                </a>
-              </Link>
-              <Link href="/events">
-                <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/events' ? 'text-accent font-semibold' : ''
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  EVENTS
-                </a>
-              </Link>
-              <Link href="/resources">
-                <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/resources' ? 'text-accent font-semibold' : ''
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  RESOURCES
-                </a>
-              </Link>
-              <Link href="/contact-us">
-                <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/contact-us' ? 'text-accent font-semibold' : ''
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  CONTACT
-                </a>
-              </Link>
-              <button 
-                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                JOIN NOW
-              </button>
+            <div className="flex flex-col space-y-4 p-4">
+              <MobileNavLink href="/" isActive={location === '/'} onClick={() => setMobileMenuOpen(false)}>HOME</MobileNavLink>
+              <MobileNavLink href="/sponsorships" isActive={location === '/sponsorships'} onClick={() => setMobileMenuOpen(false)}>SPONSORSHIPS</MobileNavLink>
+              <MobileNavLink href="/resources" isActive={location === '/resources'} onClick={() => setMobileMenuOpen(false)}>RESOURCES</MobileNavLink>
+              <MobileNavLink href="/about-us" isActive={location === '/about-us'} onClick={() => setMobileMenuOpen(false)}>ABOUT US</MobileNavLink>
+              <MobileNavLink href="/contact-us" isActive={location === '/contact-us'} onClick={() => setMobileMenuOpen(false)}>CONTACT</MobileNavLink>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>
+  );
+}
+
+function NavLink({ href, isActive, children }: { href: string; isActive: boolean; children: React.ReactNode }) {
+  return (
+    <Link href={href}>
+      <a className={`nav-item font-medium ${isActive ? 'text-primary' : 'text-foreground hover:text-primary'}`}>
+        {children}
+      </a>
+    </Link>
+  );
+}
+
+function MobileNavLink({ href, isActive, onClick, children }: { 
+  href: string; 
+  isActive: boolean; 
+  onClick: () => void; 
+  children: React.ReactNode;
+}) {
+  return (
+    <Link href={href}>
+      <a 
+        className={`font-medium p-2 ${isActive 
+          ? 'text-primary border-l-2 border-primary' 
+          : 'text-foreground hover:text-primary hover:border-l-2 hover:border-primary'
+        }`}
+        onClick={onClick}
+      >
+        {children}
+      </a>
+    </Link>
   );
 }

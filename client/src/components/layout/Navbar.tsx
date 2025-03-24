@@ -1,113 +1,135 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { useTheme } from '@/lib/theme';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
-  const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [location] = useLocation();
+  const { theme } = useTheme();
 
-  // Hide on scroll down, show on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling down
-        setShowNavbar(false);
-      } else {
-        // Scrolling up
-        setShowNavbar(true);
-      }
-      setLastScrollY(currentScrollY);
-    };
+  const isActive = (path: string) => {
+    return location === path;
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  const navBgClass = theme === 'dark' 
+    ? 'bg-dark/75' 
+    : 'bg-cream/75';
+
+  const navTextClass = theme === 'dark' 
+    ? 'text-white' 
+    : 'text-dark';
+
+  const navItemClass = (path: string) => {
+    const baseClass = 'nav-item font-medium transition-colors';
+    const activeClass = 'text-gold';
+    const inactiveClass = `${navTextClass} hover:text-gold`;
+    
+    return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
+  };
 
   return (
-    <motion.nav
-      className={`fixed left-0 right-0 z-50 mx-auto transition-transform duration-300 ${
-        showNavbar ? 'translate-y-0' : '-translate-y-full'
-      } rounded-lg m-4`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
-      style={{
-        background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
-        backdropFilter: "blur(8px)",
-        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      }}
-    >
-      <div className="container mx-auto px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="w-full fixed top-0 z-50 transition-all duration-300 px-4 py-2">
+      <div className="container mx-auto">
+        <div className={`${navBgClass} p-4 rounded-full backdrop-blur-sm flex items-center justify-between shadow-lg`}>
           {/* Logo */}
           <Link href="/">
-            <a className="flex items-center space-x-4 group">
-              <div className="w-10 h-10 flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+            <motion.a
+              className="flex items-center space-x-2 group cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+            >
+              <motion.div
+                className="w-8 h-8 flex items-center justify-center"
+                whileHover={{ rotate: 45 }}
+                transition={{ duration: 0.3 }}
+              >
                 <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
-              </div>
-              <span className="text-[#ae8300] font-bold text-xl tracking-wider group-hover:tracking-widest transition-all duration-300">
+              </motion.div>
+              <motion.span
+                className="text-gold font-bold font-['Boldonse']"
+                transition={{ duration: 0.3 }}
+              >
                 Oratory League
-              </span>
-            </a>
+              </motion.span>
+            </motion.a>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <Link href="/">
-              <a className={`text-white hover:text-gold transition-colors ${
-                location === '/' ? 'text-gold font-semibold' : ''
-              }`}>
-                Home
-              </a>
+              <a className={navItemClass("/")}>Home</a>
             </Link>
-            <Link href="/about-us">
-              <a className={`text-white hover:text-gold transition-colors ${
-                location === '/about-us' ? 'text-gold font-semibold' : ''
-              }`}>
-                About
-              </a>
-            </Link>
-            <Link href="/events">
-              <a className={`text-white hover:text-gold transition-colors ${
-                location === '/events' ? 'text-gold font-semibold' : ''
-              }`}>
-                Events
-              </a>
+            <Link href="/sponsorships">
+              <a className={navItemClass("/sponsorships")}>Sponsorships</a>
             </Link>
             <Link href="/resources">
-              <a className={`text-white hover:text-gold transition-colors ${
-                location === '/resources' ? 'text-gold font-semibold' : ''
-              }`}>
-                Resources
-              </a>
+              <a className={navItemClass("/resources")}>Resources</a>
+            </Link>
+            <Link href="/leadership">
+              <a className={navItemClass("/leadership")}>Leadership</a>
+            </Link>
+            <Link href="/about-us">
+              <a className={navItemClass("/about-us")}>About Us</a>
             </Link>
             <Link href="/contact-us">
-              <a className={`text-white hover:text-gold transition-colors ${
-                location === '/contact-us' ? 'text-gold font-semibold' : ''
-              }`}>
-                Contact
-              </a>
+              <a className={navItemClass("/contact-us")}>Contact</a>
             </Link>
+            
+            <ThemeToggle />
+            
             <Link href="/auth">
-              <button className="px-6 py-2 bg-gold text-dark rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+              <motion.a
+                className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Join Now
-              </button>
+              </motion.a>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
+          <div className="flex items-center space-x-4 md:hidden">
+            <ThemeToggle />
+            <motion.button
+              className={`${navTextClass} hover:text-gold transition-colors focus:outline-none`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white hover:text-gold transition-colors"
+              whileTap={{ scale: 0.9 }}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              {mobileMenuOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
+            </motion.button>
           </div>
         </div>
       </div>
@@ -116,79 +138,73 @@ export const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            className={`md:hidden mx-auto mt-2 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-creamLight'} p-4 shadow-lg rounded-lg max-w-[calc(100%-2rem)]`}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
-              backdropFilter: "blur(8px)",
-            }}
           >
-            <div className="container mx-auto px-8 py-4 space-y-4">
+            <div className="flex flex-col space-y-4">
               <Link href="/">
                 <a 
-                  className={`block py-2 text-white hover:text-gold transition-colors ${
-                    location === '/' ? 'text-gold font-semibold' : ''
-                  }`}
+                  className={`p-2 ${isActive('/') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
                 </a>
               </Link>
-              <Link href="/about-us">
+              <Link href="/sponsorships">
                 <a 
-                  className={`block py-2 text-white hover:text-gold transition-colors ${
-                    location === '/about-us' ? 'text-gold font-semibold' : ''
-                  }`}
+                  className={`p-2 ${isActive('/sponsorships') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  About
-                </a>
-              </Link>
-              <Link href="/events">
-                <a 
-                  className={`block py-2 text-white hover:text-gold transition-colors ${
-                    location === '/events' ? 'text-gold font-semibold' : ''
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Events
+                  Sponsorships
                 </a>
               </Link>
               <Link href="/resources">
                 <a 
-                  className={`block py-2 text-white hover:text-gold transition-colors ${
-                    location === '/resources' ? 'text-gold font-semibold' : ''
-                  }`}
+                  className={`p-2 ${isActive('/resources') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Resources
                 </a>
               </Link>
+              <Link href="/leadership">
+                <a 
+                  className={`p-2 ${isActive('/leadership') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Leadership
+                </a>
+              </Link>
+              <Link href="/about-us">
+                <a 
+                  className={`p-2 ${isActive('/about-us') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About Us
+                </a>
+              </Link>
               <Link href="/contact-us">
                 <a 
-                  className={`block py-2 text-white hover:text-gold transition-colors ${
-                    location === '/contact-us' ? 'text-gold font-semibold' : ''
-                  }`}
+                  className={`p-2 ${isActive('/contact-us') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact
                 </a>
               </Link>
               <Link href="/auth">
-                <button 
-                  className="w-full px-6 py-3 bg-gold text-dark rounded-lg font-semibold hover:bg-gold/90 transition-colors"
+                <a 
+                  className="p-2 text-gold font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Join Now
-                </button>
+                </a>
               </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
-}
+};
