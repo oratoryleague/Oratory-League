@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
   const [location] = useLocation();
@@ -31,24 +32,25 @@ export const Navbar = () => {
     <motion.nav
       className={`fixed left-0 right-0 z-50 mx-auto transition-transform duration-300 ${
         showNavbar ? 'translate-y-0' : '-translate-y-full'
-      } rounded-lg`}
+      } rounded-lg m-4`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
       style={{
-        backgroundColor: "rgba(255,215,0,0.2)", // transparent light gold background
-        backdropFilter: "blur(6px)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)", // Darker background for better contrast
+        backdropFilter: "blur(8px)",
+        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
       }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo (unchanged) */}
+          {/* Logo */}
           <Link href="/">
             <a className="flex items-center space-x-4 group">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
-                <span className="text-primary-foreground font-bold text-3xl">OL</span>
+              <div className="w-14 h-14 flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-primary font-bold text-2xl tracking-wider group-hover:tracking-widest transition-all duration-300">
+              <span className="text-white font-bold text-2xl tracking-wider group-hover:tracking-widest transition-all duration-300">
                 ORATORY LEAGUE
               </span>
             </a>
@@ -57,50 +59,52 @@ export const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/' ? 'text-accent font-semibold' : ''
+              <a className={`text-white hover:text-gold transition-colors ${
+                location === '/' ? 'text-gold font-semibold' : ''
               }`}>
                 HOME
               </a>
             </Link>
             <Link href="/about-us">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/about-us' ? 'text-accent font-semibold' : ''
+              <a className={`text-white hover:text-gold transition-colors ${
+                location === '/about-us' ? 'text-gold font-semibold' : ''
               }`}>
                 ABOUT
               </a>
             </Link>
             <Link href="/events">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/events' ? 'text-accent font-semibold' : ''
+              <a className={`text-white hover:text-gold transition-colors ${
+                location === '/events' ? 'text-gold font-semibold' : ''
               }`}>
                 EVENTS
               </a>
             </Link>
             <Link href="/resources">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/resources' ? 'text-accent font-semibold' : ''
+              <a className={`text-white hover:text-gold transition-colors ${
+                location === '/resources' ? 'text-gold font-semibold' : ''
               }`}>
                 RESOURCES
               </a>
             </Link>
             <Link href="/contact-us">
-              <a className={`text-primary hover:text-accent transition-colors ${
-                location === '/contact-us' ? 'text-accent font-semibold' : ''
+              <a className={`text-white hover:text-gold transition-colors ${
+                location === '/contact-us' ? 'text-gold font-semibold' : ''
               }`}>
                 CONTACT
               </a>
             </Link>
-            <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-              JOIN NOW
-            </button>
+            <Link href="/auth">
+              <button className="px-6 py-2 bg-gold text-dark rounded-lg font-semibold hover:bg-gold/90 transition-colors">
+                JOIN NOW
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-primary hover:text-accent transition-colors"
+              className="text-white hover:text-gold transition-colors"
             >
               {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
@@ -118,15 +122,15 @@ export const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             style={{
-              backgroundColor: "rgba(255,215,0,0.2)", // same light gold background
-              backdropFilter: "blur(6px)",
+              backgroundColor: "rgba(0, 0, 0, 0.8)", // Matching dark background
+              backdropFilter: "blur(8px)",
             }}
           >
             <div className="container mx-auto px-4 py-4 space-y-4">
               <Link href="/">
                 <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/' ? 'text-accent font-semibold' : ''
+                  className={`block py-2 text-white hover:text-gold transition-colors ${
+                    location === '/' ? 'text-gold font-semibold' : ''
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -135,8 +139,8 @@ export const Navbar = () => {
               </Link>
               <Link href="/about-us">
                 <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/about-us' ? 'text-accent font-semibold' : ''
+                  className={`block py-2 text-white hover:text-gold transition-colors ${
+                    location === '/about-us' ? 'text-gold font-semibold' : ''
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -145,8 +149,8 @@ export const Navbar = () => {
               </Link>
               <Link href="/events">
                 <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/events' ? 'text-accent font-semibold' : ''
+                  className={`block py-2 text-white hover:text-gold transition-colors ${
+                    location === '/events' ? 'text-gold font-semibold' : ''
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -155,8 +159,8 @@ export const Navbar = () => {
               </Link>
               <Link href="/resources">
                 <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/resources' ? 'text-accent font-semibold' : ''
+                  className={`block py-2 text-white hover:text-gold transition-colors ${
+                    location === '/resources' ? 'text-gold font-semibold' : ''
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -165,20 +169,22 @@ export const Navbar = () => {
               </Link>
               <Link href="/contact-us">
                 <a 
-                  className={`block py-2 text-primary hover:text-accent transition-colors ${
-                    location === '/contact-us' ? 'text-accent font-semibold' : ''
+                  className={`block py-2 text-white hover:text-gold transition-colors ${
+                    location === '/contact-us' ? 'text-gold font-semibold' : ''
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   CONTACT
                 </a>
               </Link>
-              <button 
-                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                JOIN NOW
-              </button>
+              <Link href="/auth">
+                <button 
+                  className="w-full px-6 py-3 bg-gold text-dark rounded-lg font-semibold hover:bg-gold/90 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  JOIN NOW
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}
