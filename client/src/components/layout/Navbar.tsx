@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
   const { theme } = useTheme();
+  const { scrollDirection, scrollY } = useScrollDirection();
 
   const isActive = (path: string) => {
     return location === path;
@@ -30,7 +32,14 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="floating-nav">
+    <motion.nav
+      className="floating-nav"
+      initial={{ y: 0 }}
+      animate={{ 
+        y: scrollDirection === 'down' && scrollY > 100 ? -100 : 0 
+      }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -201,6 +210,6 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
