@@ -280,4 +280,18 @@
   .partner-logos {
     min-width: max-content;
   }
+
+  .floating-nav {
+    position: fixed;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: #f5e6b9;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 6px 20px;
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
 }

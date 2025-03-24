@@ -31,9 +31,9 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="w-full z-50 transition-all duration-300 px-4 py-2">
+    <nav className="floating-nav">
       <div className="container mx-auto">
-        <div className={`${navBgClass} p-4 rounded-full backdrop-blur-sm flex items-center justify-between shadow-lg`}>
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
             <motion.a
