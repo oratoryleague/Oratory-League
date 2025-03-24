@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
@@ -77,8 +76,6 @@ export const Navbar = () => {
               <a className={navItemClass("/contact-us")}>Contact</a>
             </Link>
             
-            <ThemeToggle />
-            
             <Link href="/auth">
               <motion.a
                 className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors cursor-pointer"
@@ -91,8 +88,7 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-4 md:hidden">
-            <ThemeToggle />
+          <div className="md:hidden flex items-center space-x-2">
             <motion.button
               className={`${navTextClass} hover:text-gold transition-colors focus:outline-none`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
