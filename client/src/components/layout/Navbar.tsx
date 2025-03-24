@@ -1,210 +1,168 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '@/lib/theme';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import logoImage from '@/assets/img/logo.png';
+import { Menu, X } from 'lucide-react';
 
-export const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function Navbar() {
   const [location] = useLocation();
-  const { theme } = useTheme();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isActive = (path: string) => {
-    return location === path;
+  // Listen for scroll to change navbar style
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Framer Motion variants for links and menu transitions
+  const linkVariants = {
+    initial: { scale: 1, color: "#ccc" },
+    hover: { scale: 1.1, color: "#ff4081", transition: { duration: 0.2 } },
+    active: { scale: 1.15, color: "#ff4081" },
   };
 
-  const navBgClass = theme === 'dark' 
-    ? 'bg-dark/75' 
-    : 'bg-cream/75';
-
-  const navTextClass = theme === 'dark' 
-    ? 'text-white' 
-    : 'text-dark';
-
-  const navItemClass = (path: string) => {
-    const baseClass = 'nav-item font-medium transition-colors';
-    const activeClass = 'text-gold';
-    const inactiveClass = `${navTextClass} hover:text-gold`;
-    
-    return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
+  const mobileMenuVariants = {
+    hidden: { opacity: 0, height: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+    visible: { opacity: 1, height: "auto", transition: { duration: 0.5, ease: "easeOut" } },
   };
 
   return (
-    <nav className="w-full fixed top-0 z-50 transition-all duration-300 px-4 py-2">
-      <div className="container mx-auto">
-        <div className={`${navBgClass} p-4 rounded-full backdrop-blur-sm flex items-center justify-between shadow-lg`}>
-          {/* Logo */}
+    <motion.nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 overflow-hidden`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{
+        background: isScrolled
+          ? "linear-gradient(135deg, rgba(26,26,26,1) 0%, rgba(26,26,26,0.95) 100%)"
+          : "linear-gradient(135deg, rgba(26,26,26,0.8) 0%, rgba(26,26,26,0.7) 100%)",
+        backdropFilter: isScrolled ? "blur(8px)" : "blur(4px)",
+        boxShadow: isScrolled ? "0 8px 20px rgba(0,0,0,0.6)" : "none",
+      }}
+    >
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo with a subtle rotation and neon glow */}
           <Link href="/">
-            <motion.a
-              className="flex items-center space-x-2 group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                className="w-8 h-8 flex items-center justify-center"
-                whileHover={{ rotate: 45 }}
-                transition={{ duration: 0.3 }}
+            <a className="flex items-center space-x-4 group">
+              <motion.div 
+                className="w-16 h-16 rounded-full flex items-center justify-center"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                style={{
+                  background: "linear-gradient(45deg, #ff4081, #1e88e5)",
+                  boxShadow: "0 0 20px rgba(255,64,129,0.6)",
+                }}
               >
-                <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
+                <span className="text-white font-bold text-2xl">OL</span>
               </motion.div>
-              <motion.span
-                className="text-gold font-bold font-['Boldonse']"
+              <motion.span 
+                className="font-extrabold text-xl tracking-wider"
+                whileHover={{ letterSpacing: "0.2em" }}
                 transition={{ duration: 0.3 }}
+                style={{ color: "#fff" }}
               >
-                Oratory League
+                ORATORY LEAGUE
               </motion.span>
-            </motion.a>
+            </a>
           </Link>
-
+          
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link href="/">
-              <a className={navItemClass("/")}>Home</a>
-            </Link>
-            <Link href="/sponsorships">
-              <a className={navItemClass("/sponsorships")}>Sponsorships</a>
-            </Link>
-            <Link href="/resources">
-              <a className={navItemClass("/resources")}>Resources</a>
-            </Link>
-            <Link href="/leadership">
-              <a className={navItemClass("/leadership")}>Leadership</a>
-            </Link>
-            <Link href="/about-us">
-              <a className={navItemClass("/about-us")}>About Us</a>
-            </Link>
-            <Link href="/contact-us">
-              <a className={navItemClass("/contact-us")}>Contact</a>
-            </Link>
-            
-            <ThemeToggle />
-            
-            <Link href="/auth">
-              <motion.a
-                className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          <div className="hidden md:flex items-center space-x-8">
+            {[
+              { name: "HOME", path: "/" },
+              { name: "ABOUT", path: "/about-us" },
+              { name: "EVENTS", path: "/events" },
+              { name: "RESOURCES", path: "/resources" },
+              { name: "CONTACT", path: "/contact-us" },
+            ].map(({ name, path }) => (
+              <motion.div
+                key={name}
+                variants={linkVariants}
+                initial="initial"
+                whileHover="hover"
+                animate={location === path ? "active" : "initial"}
               >
-                Join Now
-              </motion.a>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-4 md:hidden">
-            <ThemeToggle />
+                <Link href={path}>
+                  <a className="transition-colors">{name}</a>
+                </Link>
+              </motion.div>
+            ))}
             <motion.button
-              className={`${navTextClass} hover:text-gold transition-colors focus:outline-none`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              className="px-6 py-2 rounded-full font-bold shadow-lg"
+              style={{
+                background: "linear-gradient(45deg, #1e88e5, #ff4081)",
+                color: "#fff",
+              }}
             >
-              {mobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-              )}
+              JOIN NOW
             </motion.button>
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-white"
+            >
+              {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            </button>
           </div>
         </div>
       </div>
-
+      
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className={`md:hidden mx-auto mt-2 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-creamLight'} p-4 shadow-lg rounded-lg max-w-[calc(100%-2rem)]`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            className="md:hidden bg-black/90 backdrop-blur-md"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
           >
-            <div className="flex flex-col space-y-4">
-              <Link href="/">
-                <a 
-                  className={`p-2 ${isActive('/') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
+            <div className="container mx-auto px-6 py-6 space-y-6">
+              {[
+                { name: "HOME", path: "/" },
+                { name: "ABOUT", path: "/about-us" },
+                { name: "EVENTS", path: "/events" },
+                { name: "RESOURCES", path: "/resources" },
+                { name: "CONTACT", path: "/contact-us" },
+              ].map(({ name, path }) => (
+                <motion.div
+                  key={name}
+                  variants={linkVariants}
+                  initial="initial"
+                  whileHover="hover"
+                  animate={location === path ? "active" : "initial"}
                 >
-                  Home
-                </a>
-              </Link>
-              <Link href="/sponsorships">
-                <a 
-                  className={`p-2 ${isActive('/sponsorships') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sponsorships
-                </a>
-              </Link>
-              <Link href="/resources">
-                <a 
-                  className={`p-2 ${isActive('/resources') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Resources
-                </a>
-              </Link>
-              <Link href="/leadership">
-                <a 
-                  className={`p-2 ${isActive('/leadership') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Leadership
-                </a>
-              </Link>
-              <Link href="/about-us">
-                <a 
-                  className={`p-2 ${isActive('/about-us') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About Us
-                </a>
-              </Link>
-              <Link href="/contact-us">
-                <a 
-                  className={`p-2 ${isActive('/contact-us') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Contact
-                </a>
-              </Link>
-              <Link href="/auth">
-                <a 
-                  className="p-2 text-gold font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Join Now
-                </a>
-              </Link>
+                  <Link href={path}>
+                    <a 
+                      className="block text-xl transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {name}
+                    </a>
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="w-full px-6 py-3 rounded-full font-bold shadow-lg"
+                style={{
+                  background: "linear-gradient(45deg, #1e88e5, #ff4081)",
+                  color: "#fff",
+                }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                JOIN NOW
+              </motion.button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
-};
+}
