@@ -15,8 +15,8 @@ export const Navbar = () => {
   };
 
   const navBgClass = theme === 'dark' 
-    ? 'bg-dark/75' 
-    : 'bg-cream/75';
+    ? 'bg-dark' 
+    : 'bg-cream';
 
   const navTextClass = theme === 'dark' 
     ? 'text-white' 
