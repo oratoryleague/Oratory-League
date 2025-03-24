@@ -290,8 +290,8 @@
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 6px 20px;
-    width: calc(100% - 20px);
-    max-width: calc(100% - 20px);
+    width: 95%;
+    max-width: 1400px;
     @apply bg-cream dark:bg-dark;
   }
 }
