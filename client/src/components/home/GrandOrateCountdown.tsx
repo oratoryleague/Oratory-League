@@ -88,11 +88,11 @@ export const GrandOrateCountdown = () => {
                 <div className="mb-6">
                   <div className="flex items-center mb-2">
                     <i className="fa-solid fa-calendar-days text-gold mr-3"></i>
-                    <span className={`${textClass} font-medium`}>December 4, 2025</span>
+                    <span className={`${textClass} font-medium`}>1 - 11 December, 2025</span>
                   </div>
                   <div className="flex items-center mb-2">
                     <i className="fa-solid fa-location-dot text-gold mr-3"></i>
-                    <span className={`${textClass} font-medium`}>Gaborone International Convention Centre</span>
+                    <span className={`${textClass} font-medium`}>Gaborone, Details TBA, Finale at the National Stadium</span>
                   </div>
                   <div className="flex items-center">
                     <i className="fa-solid fa-ticket text-gold mr-3"></i>
