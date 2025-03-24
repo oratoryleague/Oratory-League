@@ -31,7 +31,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="w-full fixed top-0 z-50 transition-all duration-300 px-4 py-2">
+    <nav className="w-full z-50 transition-all duration-300 px-4 py-2">
       <div className="container mx-auto">
         <div className={`${navBgClass} p-4 rounded-full backdrop-blur-sm flex items-center justify-between shadow-lg`}>
           {/* Logo */}
