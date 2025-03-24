@@ -74,7 +74,7 @@ export default function IntroSection() {
               style={{ rotate: 2 }}
             >
               <h3 className="text-3xl font-bold text-primary mb-2">Purpose</h3>
-              <p className="text-foreground/80">We are striving towards advancing debate and oratory into legislative literature.</p>
+              <p className="text-foreground/80">We are striving towards advancing debate and oratory into legislative literature, whilst integrating the use of technology to enhance legal & judiciary frameworks.</p>
             </motion.div>
           </motion.div>
           
@@ -84,8 +84,8 @@ export default function IntroSection() {
             variants={itemVariants}
           >
             <motion.img 
-              src="/assets/home-banner.png" 
-              alt="2024 ORATE AFRICA DELEGATION" 
+              src="/assets/img/home-banner.png" 
+              alt="2024 ASDC Champion (Left - Leatile King Baaitse), and 2024 ASDC Public Speakiing 1st Runner-up Champion (Right - Tinashe Pako Mapete)" 
               className="w-full h-full object-cover"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}

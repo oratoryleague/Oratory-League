@@ -115,11 +115,6 @@ export const SponsorDonate = () => {
                 transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
               >
-                {option.highlighted && (
-                  <div className="absolute top-0 right-0 bg-gold text-dark py-1 px-3 text-sm font-medium rounded-bl-xl rounded-tr-xl">
-                    Most Popular
-                  </div>
-                )}
                 <div className={`text-center mb-6 ${option.highlighted ? 'mt-4' : ''}`}>
                   <h4 className={`text-xl font-bold mb-2 ${textClass}`}>{option.title}</h4>
                   <p className="text-3xl font-bold text-gold">{option.amount}</p>
