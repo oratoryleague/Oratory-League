@@ -1,169 +1,121 @@
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useTheme } from '@/lib/theme';
-import heroVideo from '@/assets/videos/hero.mp4';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-// Add type for the error parameter
-type VideoError = Error | unknown;
-
-export const Hero = () => {
-  const { theme } = useTheme();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Parallax scroll effect
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  useEffect(() => {
-    // Make sure video is loaded and ready to play
-    if (videoRef.current) {
-      videoRef.current.play().catch((error: VideoError) => {
-        console.error("Error playing video:", error);
-      });
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
     }
-  }, []);
+  }
+};
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
     }
-  };
+  }
+};
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
-
-  const lineVariants = {
-    hidden: { scaleX: 0 },
-    visible: {
-      scaleX: 1,
-      transition: {
-        duration: 1.2,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  };
+const Hero = () => {
+  const navigate = useNavigate();
 
   return (
-    <section ref={containerRef} className="relative h-screen w-screen overflow-hidden bg-dark">
-      {/* Video Background with Parallax */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full"
-        style={{ y, opacity }}
-      >
-        <video 
-          ref={videoRef}
-          src={heroVideo}
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark" />
-      </motion.div>
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5" />
       
-      {/* Main Content */}
-      <motion.div
-        className="absolute inset-0 flex flex-col justify-center items-center px-4"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Decorative Elements */}
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-64 h-64 border-2 border-gold/30 rounded-full"
+          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-gold/10 to-transparent rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3]
           }}
           transition={{
-            duration: 4,
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 border-2 border-gold/30 rounded-full"
+          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-gold/10 to-transparent rounded-full blur-3xl"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
+            scale: [1.2, 1, 1.2],
+            opacity: [0.5, 0.3, 0.5]
           }}
           transition={{
-            duration: 4,
+            duration: 8,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
+            ease: "easeInOut"
           }}
         />
+      </div>
 
-        {/* Main Text */}
+      {/* Content */}
+      <motion.div
+        className="relative z-10 text-center px-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Logo */}
         <motion.div
-          className="text-center relative z-10"
+          className="mb-8"
           variants={itemVariants}
         >
-          <motion.h1 
-            className="text-8xl md:text-[12rem] font-display text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter"
-            variants={textVariants}
+          <img
+            src="/logo.png"
+            alt="Oratory League Logo"
+            className="w-32 h-32 mx-auto mb-6"
+          />
+        </motion.div>
+
+        {/* Main Text */}
+        <motion.h1
+          className="text-5xl md:text-7xl font-display text-gold mb-6 tracking-tight"
+          variants={itemVariants}
+        >
+          Oratory League
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-light"
+          variants={itemVariants}
+        >
+          Empowering voices, shaping futures through the art of public speaking
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          variants={itemVariants}
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 bg-gold text-black font-display text-lg rounded-lg hover:bg-gold/90 transition-colors"
+            onClick={() => navigate("/register")}
           >
-            <motion.span
-              className="block"
-              variants={textVariants}
-            >
-              THE
-            </motion.span>
-            <motion.div
-              className="relative h-16 md:h-20 my-2"
-              variants={lineVariants}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gold/20"
-                variants={lineVariants}
-              />
-              <motion.div
-                className="absolute inset-0 bg-gold/10"
-                variants={lineVariants}
-                style={{ transform: 'translateY(4px)' }}
-              />
-            </motion.div>
-            <motion.span
-              className="block"
-              variants={textVariants}
-            >
-              LEAGUE
-            </motion.span>
-          </motion.h1>
+            Join Now
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 border-2 border-gold text-gold font-display text-lg rounded-lg hover:bg-gold/10 transition-colors"
+            onClick={() => navigate("/about")}
+          >
+            Learn More
+          </motion.button>
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -209,7 +161,7 @@ export const Hero = () => {
           <div className="w-px h-12 bg-gradient-to-b from-gold/80 to-transparent" />
         </motion.div>
       </motion.div>
-    </section>
+    </div>
   );
 };
 
