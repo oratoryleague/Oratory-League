@@ -8,6 +8,16 @@ import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactUs";
 import Auth from "@/pages/Auth";
 import Leadership from "@/pages/Leadership";
+import MissionVision from "@/pages/MissionVision";
+import OurHistory from "@/pages/OurHistory";
+import JoinOL from "@/pages/JoinOL";
+import MemberBenefits from "@/pages/MemberBenefits";
+import TrainingPrograms from "@/pages/TrainingPrograms";
+import GlobalChapters from "@/pages/GlobalChapters";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfService from "@/pages/TermsOfService";
+import CodeOfConduct from "@/pages/CodeOfConduct";
+import ReportMisconduct from "@/pages/ReportMisconduct";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -48,6 +58,16 @@ function App() {
           <Route path="/contact-us" component={ContactUs} />
           <Route path="/auth" component={Auth} />
           <Route path="/leadership" component={Leadership} />
+          <Route path="/mission-vision" component={MissionVision} />
+          <Route path="/our-history" component={OurHistory} />
+          <Route path="/join" component={JoinOL} />
+          <Route path="/member-benefits" component={MemberBenefits} />
+          <Route path="/training-programs" component={TrainingPrograms} />
+          <Route path="/global-chapters" component={GlobalChapters} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-of-service" component={TermsOfService} />
+          <Route path="/code-of-conduct" component={CodeOfConduct} />
+          <Route path="/report-misconduct" component={ReportMisconduct} />
           <Route component={NotFound} />
         </Switch>
       </AnimatePresence>

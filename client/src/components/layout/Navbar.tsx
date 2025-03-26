@@ -81,8 +81,7 @@ export const Navbar = () => {
             <Link href="/contact-us">
               <a className={navItemClass("/contact-us")}>Contact</a>
             </Link>
-            
-            <Link href="/auth">
+            <Link href="/join">
               <motion.a
                 className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors cursor-pointer"
                 whileHover={{ scale: 1.05 }}
@@ -187,9 +186,9 @@ export const Navbar = () => {
                   Contact
                 </a>
               </Link>
-              <Link href="/auth">
+              <Link href="/join">
                 <a 
-                  className="p-2 text-gold font-medium"
+                  className={`p-2 ${isActive('/join') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Join Now
