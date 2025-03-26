@@ -180,8 +180,8 @@ export const Hero = () => {
             ease: "easeInOut"
           }}
         >
-          <span className="text-gold text-sm font-medium tracking-widest mb-2">SCROLL DOWN</span>
-          <div className="w-px h-12 bg-gradient-to-b from-gold to-transparent" />
+          <span className="text-gold text-sm font-display tracking-[0.3em] uppercase mb-2 opacity-80">Scroll Down</span>
+          <div className="w-px h-12 bg-gradient-to-b from-gold/80 to-transparent" />
         </motion.div>
       </motion.div>
     </section>
