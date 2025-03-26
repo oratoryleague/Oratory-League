@@ -25,10 +25,6 @@ const itemVariants = {
 };
 
 const Hero = () => {
-  const handleRegister = () => {
-    window.location.href = "/register";
-  };
-
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Video Background */}
@@ -49,51 +45,10 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Logo */}
-        <motion.div
-          className="mb-8"
-          variants={itemVariants}
-        >
-          <img
-            src="/logo.png"
-            alt="Oratory League Logo"
-            className="w-32 h-32 mx-auto mb-6"
-          />
-        </motion.div>
-
-        {/* Main Text */}
-        <motion.h1
-          className="text-5xl md:text-7xl font-display text-gold mb-6 tracking-tight"
-          variants={itemVariants}
-        >
-          Oratory League
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-light"
-          variants={itemVariants}
-        >
-          Empowering voices, shaping futures through the art of public speaking
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          className="flex justify-center mb-16"
-          variants={itemVariants}
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gold text-black font-display text-lg rounded-lg hover:bg-gold/90 transition-colors"
-            onClick={handleRegister}
-          >
-            Join Now
-          </motion.button>
-        </motion.div>
+        {/* Empty content div for animation structure */}
       </motion.div>
 
-      {/* Scroll Indicator - Moved outside the content div */}
+      {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10"
         variants={itemVariants}
