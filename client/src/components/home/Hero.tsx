@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,7 +24,13 @@ const itemVariants = {
 };
 
 const Hero = () => {
-  const navigate = useNavigate();
+  const handleRegister = () => {
+    window.location.href = "/register";
+  };
+
+  const handleAbout = () => {
+    window.location.href = "/about";
+  };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
@@ -104,7 +109,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 bg-gold text-black font-display text-lg rounded-lg hover:bg-gold/90 transition-colors"
-            onClick={() => navigate("/register")}
+            onClick={handleRegister}
           >
             Join Now
           </motion.button>
@@ -112,7 +117,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 border-2 border-gold text-gold font-display text-lg rounded-lg hover:bg-gold/10 transition-colors"
-            onClick={() => navigate("/about")}
+            onClick={handleAbout}
           >
             Learn More
           </motion.button>
