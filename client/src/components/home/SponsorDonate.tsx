@@ -109,18 +109,18 @@ export const SponsorDonate = () => {
             {sponsorshipOptions.map((option, index) => (
               <motion.div
                 key={index}
-                className={`${cardStyle} ${option.highlighted ? 'border-gold' : ''}`}
+                className={`${cardStyle} ${option.highlighted ? 'border-gold relative' : ''}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
               >
-                <div className={`text-center mb-6 ${option.highlighted ? 'mt-4' : ''}`}>
-                  {option.highlighted && (
-                    <span className="inline-block bg-gold text-dark px-3 py-1 rounded-full text-sm font-medium mb-3">
-                      Most Popular
-                    </span>
-                  )}
+                {option.highlighted && (
+                  <span className="absolute -top-3 right-6 bg-gold text-dark px-3 py-1 rounded-full text-sm font-medium">
+                    Most Popular
+                  </span>
+                )}
+                <div className="text-center mb-6">
                   <h4 className={`text-xl font-bold mb-2 ${textClass}`}>{option.title}</h4>
                   <p className="text-3xl font-bold text-gold">{option.amount}</p>
                   <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>per year</p>
