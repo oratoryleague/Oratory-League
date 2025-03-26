@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
 
         {/* Introduction */}
         <motion.div
-          className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass} mb-12`}
+          className="brutal-border p-8 mb-12 max-w-4xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7 }}
@@ -110,7 +110,7 @@ const PrivacyPolicy = () => {
           {sections.map((section, index) => (
             <motion.div
               key={index}
-              className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass}`}
+              className="brutal-border p-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}

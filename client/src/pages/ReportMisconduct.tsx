@@ -84,11 +84,12 @@ const ReportMisconduct = () => {
 
         {/* Report Form */}
         <motion.div
-          className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass}`}
+          className="brutal-border p-8 mb-12 max-w-4xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
+          transition={{ delay: 0.2, duration: 0.7 }}
         >
+          <h2 className={`text-2xl font-bold mb-6 ${textClass}`}>Submit a Report</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -221,7 +222,7 @@ const ReportMisconduct = () => {
 
         {/* Contact Information */}
         <motion.div
-          className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass} mt-12`}
+          className="brutal-border p-8 mt-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.7 }}

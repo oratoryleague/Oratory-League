@@ -91,16 +91,16 @@ const TermsOfService = () => {
 
         {/* Introduction */}
         <motion.div
-          className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass} mb-12`}
+          className="brutal-border p-8 mb-12 max-w-4xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.7 }}
         >
           <p className={`text-lg ${textClass} mb-4`}>
-            Welcome to Oratory League. These Terms of Service govern your use of our platform and services.
+            Welcome to Oratory League. By accessing or using our platform, you agree to be bound by these Terms of Service.
           </p>
           <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-            Please read these terms carefully before using our platform. By using our services, you agree to be bound by these terms.
+            Please read these terms carefully before using our services.
           </p>
         </motion.div>
 
@@ -109,7 +109,7 @@ const TermsOfService = () => {
           {sections.map((section, index) => (
             <motion.div
               key={index}
-              className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass}`}
+              className="brutal-border p-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
@@ -131,7 +131,7 @@ const TermsOfService = () => {
 
         {/* Disclaimer */}
         <motion.div
-          className={`${cardBgClass} rounded-xl shadow-lg p-8 border ${borderClass} mt-12`}
+          className="brutal-border p-8 mt-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.7 }}
