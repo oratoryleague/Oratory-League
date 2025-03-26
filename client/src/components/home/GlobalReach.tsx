@@ -40,6 +40,7 @@ const GlobalReach = () => {
   const textClass = theme === 'dark' ? 'text-white' : 'text-dark';
   const cardBgClass = theme === 'dark' ? 'bg-darkAccent' : 'bg-white';
   const borderClass = theme === 'dark' ? 'border-gray-700' : 'border-gray-200';
+  const bgClass = theme === 'dark' ? 'bg-dark' : 'bg-cream';
 
   const stats = [
     { label: "Targeted Countries", value: "40+" },
@@ -48,7 +49,7 @@ const GlobalReach = () => {
   ];
 
   return (
-    <section className={`${theme === 'dark' ? 'bg-dark' : 'bg-cream'} py-20`}>
+    <section className={`${bgClass} py-20`}>
       <div className="container mx-auto px-4">
         {/* Title Section */}
         <motion.div
@@ -74,7 +75,7 @@ const GlobalReach = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
             
             {/* Content Overlay */}
-            <div className="absolute bottom-0 left-0 p-8 w-full md:w-1/2">
+            <div className={`absolute bottom-0 left-0 p-8 w-full md:w-1/2 ${bgClass} bg-opacity-90`}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +96,7 @@ const GlobalReach = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`${cardBgClass} p-4 rounded-xl border ${borderClass} text-center backdrop-blur-sm`}
+                      className={`${cardBgClass} p-4 rounded-xl border ${borderClass} text-center`}
                     >
                       <div className="text-2xl font-bold text-gold mb-1">{stat.value}</div>
                       <div className={`text-sm ${textClass}`}>{stat.label}</div>
