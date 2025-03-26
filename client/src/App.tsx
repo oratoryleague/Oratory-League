@@ -2,7 +2,7 @@ import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
-import Sponsorships from "@/pages/Sponsorships";
+import Support from "@/pages/Support";
 import Resources from "@/pages/Resources";
 import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactUs";
@@ -42,7 +42,7 @@ function App() {
       <AnimatePresence mode="wait">
         <Switch key={location}>
           <Route path="/" component={Home} />
-          <Route path="/sponsorships" component={Sponsorships} />
+          <Route path="/sponsorships" component={Support} />
           <Route path="/resources" component={Resources} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contact-us" component={ContactUs} />

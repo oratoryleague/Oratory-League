@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import heroVideo from '@/assets/videos/hero.mp4';
 
+// Add type for the error parameter
+type VideoError = Error | unknown;
+
 export const Hero = () => {
   const { theme } = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,7 +13,7 @@ export const Hero = () => {
   useEffect(() => {
     // Make sure video is loaded and ready to play
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
+      videoRef.current.play().catch((error: VideoError) => {
         console.error("Error playing video:", error);
       });
     }
@@ -95,8 +98,8 @@ export const Hero = () => {
           playsInline 
           className="absolute top-0 left-0 w-full h-full object-cover opacity-70 m-0 p-0"
           style={{ objectFit: 'cover' }}
-        ></video>
-        <div className="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark" />
       </div>
       
       {/* Text Overlay with Animated Drawing Effect */}
@@ -109,7 +112,7 @@ export const Hero = () => {
         >
           {/* Animated "THE LEAGUE" text */}
           <motion.div className="relative">
-            <h1 className="text-7xl md:text-9xl font-light text-goldLight uppercase leading-none tracking-tighter">
+            <h1 className="text-7xl md:text-9xl font-['Boldonse'] text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter">
               <div className="relative">
                 <motion.span
                   initial={{ opacity: 0 }}
@@ -143,7 +146,7 @@ export const Hero = () => {
           </motion.div>
           
           <motion.div 
-            className="absolute -bottom-6 -right-4 w-24 h-24 md:w-32 md:h-32 rounded-full bg-gold"
+            className="absolute -bottom-6 -right-4 w-24 h-24 md:w-32 md:h-32 border-2 border-gold"
             variants={orbVariants}
             animate={{
               scale: [1, 1.2, 1],
@@ -155,7 +158,7 @@ export const Hero = () => {
               repeat: Infinity,
               repeatType: "reverse"
             }}
-          ></motion.div>
+          />
         </motion.div>
       </div>
       
@@ -167,7 +170,7 @@ export const Hero = () => {
         animate="animate"
       >
         <span className="text-gold text-sm font-medium tracking-widest mb-2">SCROLL DOWN</span>
-        <div className="w-px h-12 bg-gold"></div>
+        <div className="w-px h-12 bg-gold" />
       </motion.div>
     </section>
   );

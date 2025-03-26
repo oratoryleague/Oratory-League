@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 
-const Sponsorships = () => {
+const Support = () => {
   const { theme } = useTheme();
   
   // Scroll to top on page load
@@ -25,7 +25,7 @@ const Sponsorships = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          Sponsorships
+          Support
         </motion.h1>
         
         <motion.div 
@@ -38,7 +38,7 @@ const Sponsorships = () => {
             Partner with Oratory League to support global oratory excellence and connect with a worldwide network of thought leaders and communicators.
           </p>
           <p>
-            Content coming soon. Please check back later for sponsorship opportunities.
+            Content coming soon. Please check back later for support opportunities.
           </p>
         </motion.div>
       </div>
@@ -46,4 +46,4 @@ const Sponsorships = () => {
   );
 };
 
-export default Sponsorships;
+export default Support; 

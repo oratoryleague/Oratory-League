@@ -70,7 +70,7 @@ export const Navbar = () => {
               <a className={navItemClass("/")}>Home</a>
             </Link>
             <Link href="/sponsorships">
-              <a className={navItemClass("/sponsorships")}>Sponsorships</a>
+              <a className={navItemClass("/sponsorships")}>Support</a>
             </Link>
             <Link href="/resources">
               <a className={navItemClass("/resources")}>Resources</a>
@@ -163,7 +163,7 @@ export const Navbar = () => {
                   className={`p-2 ${isActive('/sponsorships') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Sponsorships
+                  Support
                 </a>
               </Link>
               <Link href="/resources">
