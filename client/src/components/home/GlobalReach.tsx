@@ -75,7 +75,7 @@ const GlobalReach = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
             
             {/* Content Overlay */}
-            <div className={`absolute bottom-0 left-0 p-8 w-full md:w-1/2 ${bgClass} bg-opacity-90`}>
+            <div className={`absolute bottom-8 left-8 p-8 w-full md:w-1/2 ${bgClass} bg-opacity-90 rounded-2xl shadow-lg`}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
