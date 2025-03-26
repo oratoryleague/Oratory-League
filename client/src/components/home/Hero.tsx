@@ -112,7 +112,7 @@ export const Hero = () => {
         >
           {/* Animated "THE LEAGUE" text */}
           <motion.div className="relative">
-            <h1 className="text-7xl md:text-9xl font-['Boldonse'] text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter">
+            <h1 className="text-7xl md:text-9xl font-display text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter">
               <div className="relative">
                 <motion.span
                   initial={{ opacity: 0 }}
