@@ -19,7 +19,9 @@ export const Footer = () => {
             <h4 className="text-lg font-bold text-gold mb-3">About OL</h4>
             <ul className="space-y-1.5">
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Mission & Vision</a>
+                <Link href="/mission-vision">
+                  <a className="text-sm hover:text-gold transition-colors">Mission & Vision</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
                 <Link href="/leadership">
@@ -27,7 +29,9 @@ export const Footer = () => {
                 </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Our History</a>
+                <Link href="/our-history">
+                  <a className="text-sm hover:text-gold transition-colors">Our History</a>
+                </Link>
               </motion.li>
             </ul>
           </div>
@@ -37,16 +41,24 @@ export const Footer = () => {
             <h4 className="text-lg font-bold text-gold mb-3">Membership</h4>
             <ul className="space-y-1.5">
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Join OL</a>
+                <Link href="/join">
+                  <a className="text-sm hover:text-gold transition-colors">Join OL</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Member Benefits</a>
+                <Link href="/member-benefits">
+                  <a className="text-sm hover:text-gold transition-colors">Member Benefits</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Training Programs</a>
+                <Link href="/training-programs">
+                  <a className="text-sm hover:text-gold transition-colors">Training Programs</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Global Chapters</a>
+                <Link href="/global-chapters">
+                  <a className="text-sm hover:text-gold transition-colors">Global Chapters</a>
+                </Link>
               </motion.li>
             </ul>
           </div>
@@ -56,22 +68,30 @@ export const Footer = () => {
             <h4 className="text-lg font-bold text-gold mb-3">Legal</h4>
             <ul className="space-y-1.5">
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Privacy Policy</a>
+                <Link href="/privacy-policy">
+                  <a className="text-sm hover:text-gold transition-colors">Privacy Policy</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Terms of Service</a>
+                <Link href="/terms-of-service">
+                  <a className="text-sm hover:text-gold transition-colors">Terms of Service</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Code of Conduct</a>
+                <Link href="/code-of-conduct">
+                  <a className="text-sm hover:text-gold transition-colors">Code of Conduct</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Report Misconduct</a>
+                <Link href="/report-misconduct">
+                  <a className="text-sm hover:text-gold transition-colors">Report Misconduct</a>
+                </Link>
               </motion.li>
             </ul>
           </div>
         </div>
         
-        <div className={`border-t ${borderClass} mt-6 pt-6 flex flex-col md:flex-row justify-between items-center`}>
+        <div className="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
               <a className="flex items-center space-x-2 cursor-pointer">
