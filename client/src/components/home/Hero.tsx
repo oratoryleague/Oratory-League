@@ -134,7 +134,7 @@ export const Hero = () => {
           variants={itemVariants}
         >
           <motion.h1 
-            className="text-8xl md:text-[12rem] font-['Boldonse'] text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter"
+            className="text-8xl md:text-[12rem] font-display text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter"
             variants={textVariants}
           >
             <motion.span
@@ -144,7 +144,7 @@ export const Hero = () => {
               THE
             </motion.span>
             <motion.div
-              className="relative h-24 md:h-32 my-4"
+              className="relative h-16 md:h-20 my-2"
               variants={lineVariants}
             >
               <motion.div
