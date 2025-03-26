@@ -22,10 +22,9 @@ export const Footer = () => {
                 <a href="#" className="text-sm hover:text-gold transition-colors">Mission & Vision</a>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Constitution</a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="#" className="text-sm hover:text-gold transition-colors">Leadership</a>
+                <Link href="/leadership">
+                  <a className="text-sm hover:text-gold transition-colors">Leadership</a>
+                </Link>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
                 <a href="#" className="text-sm hover:text-gold transition-colors">Our History</a>
@@ -64,9 +63,6 @@ export const Footer = () => {
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
                 <a href="#" className="text-sm hover:text-gold transition-colors">Code of Conduct</a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/leadership" className="text-sm hover:text-gold transition-colors">Leadership</a>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
                 <a href="#" className="text-sm hover:text-gold transition-colors">Report Misconduct</a>
