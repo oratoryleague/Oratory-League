@@ -97,53 +97,125 @@ const Auth = () => {
     }
   });
 
-  const onLoginSubmit = (data: LoginFormValues) => {
-    console.log('Login data:', data);
-    // In a real app, we would handle authentication here
-    localStorage.setItem('user', JSON.stringify({ email: data.email }));
-    setLocation('/dashboard');
-  };
+  const onLoginSubmit = async (data: LoginFormValues) => {
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
+      });
 
-  const onRegisterSubmit = async (data: RegisterFormValues) => {
-    console.log('Register data:', data);
-    setAccountType(data.accountType);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
 
-    if (data.accountType === 'individual') {
-      // Individual accounts can proceed directly
-      localStorage.setItem('user', JSON.stringify({ 
-        email: data.email,
-        fullName: data.fullName,
-        accountType: 'individual'
-      }));
+      const result = await response.json();
       setLocation('/dashboard');
-    } else {
-      // For speaker and corporate accounts, proceed to second step
-      setStep(2);
+    } catch (error: any) {
+      console.error('Login error:', error);
+      // You might want to show this error to the user
     }
   };
 
-  const onSpeakerSubmit = (data: SpeakerFormValues) => {
-    console.log('Speaker data:', data);
+  const onRegisterSubmit = async (data: RegisterFormValues) => {
+    try {
+      setAccountType(data.accountType);
 
-    const userData = {
-      ...registerForm.getValues(),
-      ...data,
-    };
+      if (data.accountType === 'individual') {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password,
+            fullName: data.fullName,
+            accountType: 'individual',
+          }),
+        });
 
-    localStorage.setItem('user', JSON.stringify(userData));
-    setLocation('/dashboard');
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message);
+        }
+
+        const result = await response.json();
+        setLocation('/dashboard');
+      } else {
+        setStep(2);
+      }
+    } catch (error: any) {
+      console.error('Registration error:', error);
+      // You might want to show this error to the user
+    }
   };
 
-  const onCorporateSubmit = (data: CorporateFormValues) => {
-    console.log('Corporate data:', data);
+  const onSpeakerSubmit = async (data: SpeakerFormValues) => {
+    try {
+      const registerData = registerForm.getValues();
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          email: registerData.email,
+          password: registerData.password,
+          fullName: registerData.fullName,
+          accountType: 'speaker',
+          speakerProfile: data,
+        }),
+      });
 
-    const userData = {
-      ...registerForm.getValues(),
-      ...data,
-    };
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
 
-    localStorage.setItem('user', JSON.stringify(userData));
-    setLocation('/dashboard');
+      const result = await response.json();
+      setLocation('/dashboard');
+    } catch (error: any) {
+      console.error('Speaker registration error:', error);
+      // You might want to show this error to the user
+    }
+  };
+
+  const onCorporateSubmit = async (data: CorporateFormValues) => {
+    try {
+      const registerData = registerForm.getValues();
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          email: registerData.email,
+          password: registerData.password,
+          fullName: registerData.fullName,
+          accountType: 'corporate',
+          corporateProfile: data,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+
+      const result = await response.json();
+      setLocation('/dashboard');
+    } catch (error: any) {
+      console.error('Corporate registration error:', error);
+      // You might want to show this error to the user
+    }
   };
 
   const cardBgClass = theme === 'dark' ? 'bg-darkAccent' : 'bg-cream';

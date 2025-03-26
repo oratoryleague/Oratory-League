@@ -1,10 +1,15 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { setupAuth } from "./middleware/auth";
+import authRoutes from "./routes/auth";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Setup authentication
+setupAuth(app);
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -38,6 +43,9 @@ app.use((req, res, next) => {
 
 (async () => {
   const server = await registerRoutes(app);
+
+  // Register auth routes
+  app.use('/api/auth', authRoutes);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
