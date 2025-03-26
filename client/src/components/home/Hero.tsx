@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import heroVideo from '@/assets/videos/hero.mp4';
 
@@ -9,6 +9,16 @@ type VideoError = Error | unknown;
 export const Hero = () => {
   const { theme } = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     // Make sure video is loaded and ready to play
@@ -19,76 +29,59 @@ export const Hero = () => {
     }
   }, []);
 
-  const textVariants = {
-    initial: {
-      y: 100,
-      opacity: 0
-    },
-    animate: {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
       y: 0,
       opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const lineVariants = {
+    hidden: { scaleX: 0 },
+    visible: {
+      scaleX: 1,
       transition: {
         duration: 1.2,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const orbVariants = {
-    initial: {
-      scale: 0,
-      opacity: 0
-    },
-    animate: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        delay: 0.8,
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const scrollIndicatorVariants = {
-    initial: {
-      opacity: 0,
-      y: 20
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 1.5,
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  // SVG path drawing animation for "THE LEAGUE" text
-  const pathVariants = {
-    hidden: {
-      pathLength: 0,
-      opacity: 0
-    },
-    visible: {
-      pathLength: 1,
-      opacity: 1,
-      transition: {
-        duration: 2,
-        ease: "easeInOut",
-        repeat: Infinity,
-        repeatType: "loop",
-        repeatDelay: 0.5
+        ease: [0.6, -0.05, 0.01, 0.99]
       }
     }
   };
 
   return (
-    <section className="relative h-screen w-screen overflow-hidden bg-dark m-0 p-0">
-      {/* Video Background - Full screen with no borders/rounded corners */}
-      <div className="absolute inset-0 w-full h-full m-0 p-0">
+    <section ref={containerRef} className="relative h-screen w-screen overflow-hidden bg-dark">
+      {/* Video Background with Parallax */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full"
+        style={{ y, opacity }}
+      >
         <video 
           ref={videoRef}
           src={heroVideo}
@@ -96,81 +89,100 @@ export const Hero = () => {
           loop 
           muted 
           playsInline 
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-70 m-0 p-0"
-          style={{ objectFit: 'cover' }}
+          className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark" />
-      </div>
+      </motion.div>
       
-      {/* Text Overlay with Animated Drawing Effect */}
-      <div className="absolute inset-0 flex justify-center items-center">
-        <motion.div
-          className="relative text-center"
-          initial="initial"
-          animate="animate"
-          variants={textVariants}
-        >
-          {/* Animated "THE LEAGUE" text */}
-          <motion.div className="relative">
-            <h1 className="text-7xl md:text-9xl font-['Boldonse'] text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter">
-              <div className="relative">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="block"
-                >
-                  THE
-                </motion.span>
-                <svg className="w-full h-16 md:h-24 mt-2" viewBox="0 0 300 50">
-                  <motion.path
-                    d="M10,25 L70,25 M90,25 L150,25 M170,25 L230,25 M250,25 L290,25"
-                    stroke="#f5e6b9"
-                    strokeWidth="1"
-                    fill="none"
-                    variants={pathVariants}
-                    initial="hidden"
-                    animate="visible"
-                  />
-                </svg>
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                  className="block"
-                >
-                  LEAGUE
-                </motion.span>
-              </div>
-            </h1>
-          </motion.div>
-          
-          <motion.div 
-            className="absolute -bottom-6 -right-4 w-24 h-24 md:w-32 md:h-32 border-2 border-gold"
-            variants={orbVariants}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.8, 0.6, 0.8]
-            }}
-            transition={{
-              duration: 3,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          />
-        </motion.div>
-      </div>
-      
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-        variants={scrollIndicatorVariants}
-        initial="initial"
-        animate="animate"
+      {/* Main Content */}
+      <motion.div
+        className="absolute inset-0 flex flex-col justify-center items-center px-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <span className="text-gold text-sm font-medium tracking-widest mb-2">SCROLL DOWN</span>
-        <div className="w-px h-12 bg-gold" />
+        {/* Decorative Elements */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-64 h-64 border-2 border-gold/30 rounded-full"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 border-2 border-gold/30 rounded-full"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+
+        {/* Main Text */}
+        <motion.div
+          className="text-center relative z-10"
+          variants={itemVariants}
+        >
+          <motion.h1 
+            className="text-8xl md:text-[12rem] font-['Boldonse'] text-transparent [-webkit-text-stroke:2px_#f5e6b9] uppercase leading-none tracking-tighter"
+            variants={textVariants}
+          >
+            <motion.span
+              className="block"
+              variants={textVariants}
+            >
+              THE
+            </motion.span>
+            <motion.div
+              className="relative h-24 md:h-32 my-4"
+              variants={lineVariants}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gold/20"
+                variants={lineVariants}
+              />
+              <motion.div
+                className="absolute inset-0 bg-gold/10"
+                variants={lineVariants}
+                style={{ transform: 'translateY(4px)' }}
+              />
+            </motion.div>
+            <motion.span
+              className="block"
+              variants={textVariants}
+            >
+              LEAGUE
+            </motion.span>
+          </motion.h1>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          variants={itemVariants}
+          animate={{
+            y: [0, 10, 0],
+            opacity: [0.5, 0.8, 0.5]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <span className="text-gold text-sm font-medium tracking-widest mb-2">SCROLL DOWN</span>
+          <div className="w-px h-12 bg-gradient-to-b from-gold to-transparent" />
+        </motion.div>
       </motion.div>
     </section>
   );
