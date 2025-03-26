@@ -116,6 +116,11 @@ export const SponsorDonate = () => {
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
               >
                 <div className={`text-center mb-6 ${option.highlighted ? 'mt-4' : ''}`}>
+                  {option.highlighted && (
+                    <span className="inline-block bg-gold text-dark px-3 py-1 rounded-full text-sm font-medium mb-3">
+                      Most Popular
+                    </span>
+                  )}
                   <h4 className={`text-xl font-bold mb-2 ${textClass}`}>{option.title}</h4>
                   <p className="text-3xl font-bold text-gold">{option.amount}</p>
                   <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>per year</p>
@@ -186,7 +191,7 @@ export const SponsorDonate = () => {
               href="/contact-us" 
               className="inline-block bg-gold text-dark px-8 py-4 rounded-lg font-medium hover:bg-goldLight transition-colors"
             >
-              Contact Us About Sponsorships & Donations
+              Support
             </a>
           </motion.div>
         </div>

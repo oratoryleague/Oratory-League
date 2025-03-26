@@ -84,7 +84,7 @@ const GlobalReach = () => {
                 className="space-y-6"
               >
                 <p className={`text-lg ${textClass}`}>
-                  In just a few months, Oratory League has established presence in 3 countries and countring. By the end of 2025, we would have made a strong presence in 20 countries.
+                  In just a few months, Oratory League has established presence in 3 countries and countring. By the end of 2026, we would have made a strong presence in 20 countries.
                 </p>
 
                 {/* Stats Grid */}

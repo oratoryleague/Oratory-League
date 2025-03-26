@@ -75,7 +75,7 @@ export const CallToAction = () => {
             className="text-xl md:text-2xl mb-10"
             variants={itemVariants}
           >
-            Become part of a global community dedicated to advancing the art of oratory and debate. Whether you're a seasoned speaker or just starting out, there's a place for you in the Oratory League.
+            Become part of a global community dedicated to advancing the art of oratory and debate. Whether you're a seasoned speaker or just starting out, there's a place for you in Oratory League.
           </motion.p>
           
           {/* Interactive CTA Button */}

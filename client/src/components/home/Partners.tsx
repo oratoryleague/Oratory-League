@@ -96,7 +96,11 @@ export const Partners = () => {
                   <img 
                     src={logo} 
                     alt={`Partner ${index + 1}`} 
-                    className="h-16 sm:h-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    className={`h-16 sm:h-20 object-contain transition-all duration-300 opacity-70 hover:opacity-100 ${
+                      theme === 'dark' 
+                        ? 'filter brightness-0 invert hover:brightness-100 hover:invert-0' 
+                        : 'filter grayscale hover:grayscale-0'
+                    }`}
                   />
                 </div>
               ))}
