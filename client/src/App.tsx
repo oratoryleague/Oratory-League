@@ -24,9 +24,6 @@ const AppContent = () => {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check if we should show the bottom nav
-  const showBottomNav = ['/search', '/orators', '/events', '/notifications', '/profile'].includes(location.pathname);
-
   useEffect(() => {
     // Simulate initial load delay
     const timer = setTimeout(() => {
@@ -44,7 +41,7 @@ const AppContent = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pb-16">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
@@ -59,7 +56,7 @@ const AppContent = () => {
           </Routes>
         </AnimatePresence>
       </main>
-      {showBottomNav && <BottomNav />}
+      <BottomNav />
       <Footer />
       <Toaster position="top-right" />
     </div>
