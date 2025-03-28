@@ -18,6 +18,11 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import CodeOfConduct from "@/pages/CodeOfConduct";
 import ReportMisconduct from "@/pages/ReportMisconduct";
+import Search from "@/pages/Search";
+import Orators from "@/pages/Orators";
+import Events from "@/pages/Events";
+import Notifications from "@/pages/Notifications";
+import Profile from "@/pages/Profile";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -28,6 +33,7 @@ import { useLocation } from "wouter";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import { applyCardStyles } from "@/lib/applyCardStyles";
 import { useEffect } from "react";
+import BottomNav from "@/components/ui/BottomNav";
 
 function App() {
   const { theme } = useTheme();
@@ -42,6 +48,15 @@ function App() {
     
     return () => clearTimeout(timer);
   }, [location]);
+
+  // Check if current route should show bottom nav
+  const showBottomNav = [
+    '/search',
+    '/orators',
+    '/events',
+    '/notifications',
+    '/profile'
+  ].includes(location);
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-dark text-white' : 'bg-lightBg text-dark'}`}>
@@ -68,9 +83,15 @@ function App() {
           <Route path="/terms-of-service" component={TermsOfService} />
           <Route path="/code-of-conduct" component={CodeOfConduct} />
           <Route path="/report-misconduct" component={ReportMisconduct} />
+          <Route path="/search" component={Search} />
+          <Route path="/orators" component={Orators} />
+          <Route path="/events" component={Events} />
+          <Route path="/notifications" component={Notifications} />
+          <Route path="/profile" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </AnimatePresence>
+      {showBottomNav && <BottomNav />}
       <Footer />
       <Toaster />
     </div>
