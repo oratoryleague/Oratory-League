@@ -1,67 +1,64 @@
-import { useLocation, useNavigate } from 'wouter';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useTheme } from '@/lib/theme';
 import { Search, Users, Calendar, Bell, User } from 'lucide-react';
 
 interface NavItemProps {
   icon: React.ReactNode;
   label: string;
+  path: string;
   isActive: boolean;
-  onClick: () => void;
 }
 
-const NavItem = ({ icon, label, isActive, onClick }: NavItemProps) => {
+const NavItem = ({ icon, label, path, isActive }: NavItemProps) => {
   return (
-    <motion.button
-      onClick={onClick}
-      className="relative flex flex-col items-center justify-center w-full h-full p-2"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+    <Link
+      to={path}
+      className="flex flex-col items-center justify-center w-full h-full relative"
     >
-      {isActive && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute -top-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold to-gold/80 px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg"
-        >
-          {label}
-        </motion.div>
-      )}
-      <div className={`${isActive ? 'text-gold' : 'text-gray-500'} transition-colors duration-200`}>
+      <div className="relative">
         {icon}
+        {isActive && (
+          <motion.div
+            layoutId="activeTab"
+            className="absolute -inset-2 bg-gradient-to-r from-gold/20 to-gold/10 rounded-full -z-10"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
       </div>
-    </motion.button>
+      <span className={`text-xs mt-1 ${isActive ? 'text-gold' : 'text-gray-500 dark:text-gray-400'}`}>
+        {label}
+      </span>
+    </Link>
   );
 };
 
 const BottomNav = () => {
-  const [, navigate] = useLocation();
-  const { theme } = useTheme();
-  const bgClass = theme === 'dark' ? 'bg-darkAccent' : 'bg-white';
+  const location = useLocation();
 
   const navItems = [
-    { icon: <Search size={24} />, label: 'Search', path: '/search' },
-    { icon: <Users size={24} />, label: 'Orators', path: '/orators' },
-    { icon: <Calendar size={24} />, label: 'Events', path: '/events' },
-    { icon: <Bell size={24} />, label: 'Notifications', path: '/notifications' },
-    { icon: <User size={24} />, label: 'Profile', path: '/profile' },
+    { icon: <Search className="w-6 h-6" />, label: 'Search', path: '/search' },
+    { icon: <Users className="w-6 h-6" />, label: 'Orators', path: '/orators' },
+    { icon: <Calendar className="w-6 h-6" />, label: 'Events', path: '/events' },
+    { icon: <Bell className="w-6 h-6" />, label: 'Notifications', path: '/notifications' },
+    { icon: <User className="w-6 h-6" />, label: 'Profile', path: '/profile' },
   ];
 
   return (
     <motion.nav
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      className={`fixed bottom-0 left-0 right-0 ${bgClass} border-t border-gray-200 dark:border-gray-800 shadow-lg z-50`}
+      exit={{ y: 100 }}
+      className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 z-50"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-around h-16">
-          {navItems.map((item, index) => (
+      <div className="max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-5 h-16">
+          {navItems.map((item) => (
             <NavItem
-              key={index}
+              key={item.path}
               icon={item.icon}
               label={item.label}
+              path={item.path}
               isActive={location.pathname === item.path}
-              onClick={() => navigate(item.path)}
             />
           ))}
         </div>

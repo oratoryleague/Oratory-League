@@ -1,101 +1,83 @@
-import { Switch, Route } from "wouter";
-import { Toaster } from "@/components/ui/toaster";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import Support from "@/pages/Support";
-import Resources from "@/pages/Resources";
-import AboutUs from "@/pages/AboutUs";
-import ContactUs from "@/pages/ContactUs";
-import Auth from "@/pages/Auth";
-import Leadership from "@/pages/Leadership";
-import MissionVision from "@/pages/MissionVision";
-import OurHistory from "@/pages/OurHistory";
-import JoinOL from "@/pages/JoinOL";
-import MemberBenefits from "@/pages/MemberBenefits";
-import TrainingPrograms from "@/pages/TrainingPrograms";
-import GlobalChapters from "@/pages/GlobalChapters";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import TermsOfService from "@/pages/TermsOfService";
-import CodeOfConduct from "@/pages/CodeOfConduct";
-import ReportMisconduct from "@/pages/ReportMisconduct";
-import Search from "@/pages/Search";
-import Orators from "@/pages/Orators";
-import Events from "@/pages/Events";
-import Notifications from "@/pages/Notifications";
-import Profile from "@/pages/Profile";
-import CustomCursor from "@/components/ui/CustomCursor";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { useTheme } from "@/lib/theme";
-import { AnimatePresence } from "framer-motion";
-import { useLocation } from "wouter";
-import LoadingScreen from "@/components/ui/LoadingScreen";
-import { applyCardStyles } from "@/lib/applyCardStyles";
-import { useEffect } from "react";
-import BottomNav from "@/components/ui/BottomNav";
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { ThemeProvider } from '@/lib/theme';
+import { AuthProvider } from '@/lib/auth';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
+import { LoadingScreen } from '@/components/ui/LoadingScreen';
+import { Navbar } from '@/components/ui/Navbar';
+import { Footer } from '@/components/ui/Footer';
+import { BottomNav } from '@/components/ui/BottomNav';
+import Home from '@/pages/Home';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
+import Search from '@/pages/Search';
+import Orators from '@/pages/Orators';
+import Events from '@/pages/Events';
+import Notifications from '@/pages/Notifications';
+import Profile from '@/pages/Profile';
+import NotFound from '@/pages/NotFound';
 
-function App() {
-  const { theme } = useTheme();
-  const [location] = useLocation();
+const AppContent = () => {
+  const location = useLocation();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Apply card styles after component mounts and whenever location changes
+  // Check if we should show the bottom nav
+  const showBottomNav = ['/search', '/orators', '/events', '/notifications', '/profile'].includes(location.pathname);
+
   useEffect(() => {
-    // Small delay to ensure DOM is fully loaded
+    // Simulate initial load delay
     const timer = setTimeout(() => {
-      applyCardStyles();
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, [location]);
+      setIsInitialLoad(false);
+      setIsLoading(false);
+    }, 2000);
 
-  // Check if current route should show bottom nav
-  const showBottomNav = [
-    '/search',
-    '/orators',
-    '/events',
-    '/notifications',
-    '/profile'
-  ].includes(location);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-dark text-white' : 'bg-lightBg text-dark'}`}>
-      <LoadingScreen />
-      <CustomCursor />
-      <ThemeToggle />
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <AnimatePresence mode="wait">
-        <Switch key={location}>
-          <Route path="/" component={Home} />
-          <Route path="/sponsorships" component={Support} />
-          <Route path="/resources" component={Resources} />
-          <Route path="/about-us" component={AboutUs} />
-          <Route path="/contact-us" component={ContactUs} />
-          <Route path="/auth" component={Auth} />
-          <Route path="/leadership" component={Leadership} />
-          <Route path="/mission-vision" component={MissionVision} />
-          <Route path="/our-history" component={OurHistory} />
-          <Route path="/join" component={JoinOL} />
-          <Route path="/member-benefits" component={MemberBenefits} />
-          <Route path="/training-programs" component={TrainingPrograms} />
-          <Route path="/global-chapters" component={GlobalChapters} />
-          <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/terms-of-service" component={TermsOfService} />
-          <Route path="/code-of-conduct" component={CodeOfConduct} />
-          <Route path="/report-misconduct" component={ReportMisconduct} />
-          <Route path="/search" component={Search} />
-          <Route path="/orators" component={Orators} />
-          <Route path="/events" component={Events} />
-          <Route path="/notifications" component={Notifications} />
-          <Route path="/profile" component={Profile} />
-          <Route component={NotFound} />
-        </Switch>
-      </AnimatePresence>
+      <main className="flex-grow">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/orators" element={<Orators />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
       {showBottomNav && <BottomNav />}
       <Footer />
-      <Toaster />
+      <Toaster position="top-right" />
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AuthProvider>
+          <Router>
+            <AppContent />
+          </Router>
+        </AuthProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+};
 
 export default App;
