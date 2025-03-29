@@ -11,7 +11,7 @@ export const Footer = () => {
   const borderClass = theme === 'dark' ? 'border-white/10' : 'border-dark/10';
   
   return (
-    <footer className={`${footerBgClass} py-8 ${textClass}`}>
+    <footer className={`${footerBgClass} py-8 pb-24 ${textClass}`}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* About OL */}
