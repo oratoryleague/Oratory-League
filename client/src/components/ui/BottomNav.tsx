@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
-import highlightImage from '@/assets/img/highlight.png';
 
 interface NavItemProps {
   href: string;
@@ -20,19 +19,11 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
       >
         {isActive && (
           <motion.div
-            className="absolute inset-0 w-full h-[250%] -top-[75%] !max-h-none !min-h-[250%]"
-            style={{ height: '250%', maxHeight: 'none', minHeight: '250%' }}
+            className="absolute inset-0 w-full h-[180%] -top-[40%] rounded-full bg-gradient-to-b from-[#ae8300]/20 to-[#ae8300]/10"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
-          >
-            <img
-              src={highlightImage}
-              alt="Active tab highlight"
-              className="w-full h-full object-contain filter dark:brightness-75 !max-h-none !min-h-[250%]"
-              style={{ height: '250%', maxHeight: 'none', minHeight: '250%' }}
-            />
-          </motion.div>
+          />
         )}
         <div className="relative z-10 flex flex-col items-center">
           <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
