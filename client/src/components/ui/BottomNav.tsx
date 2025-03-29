@@ -50,9 +50,9 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-1 z-50 w-[calc(100%-2rem)] mx-auto left-0 right-0 ${
+      className={`fixed bottom-0 z-50 w-[calc(100%-2rem)] mx-auto left-0 right-0 ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
-      } border-t border-gray-200/50 dark:border-gray-800/50 rounded-t-2xl`}
+      } border border-[#ae8300]/30 rounded-t-2xl`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
