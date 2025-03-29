@@ -59,58 +59,107 @@ export const Navbar = () => {
     >
       <div className="w-full px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center space-x-2">
             <img src={logoImage} alt="Oratory League Logo" className="h-8 w-auto" />
+            <span className="text-[#ae8300] font-bold font-['Boldonse']">Oratory League</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => 
+                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'active' : ''
+                }`
+              }
+            >
               Home
             </NavLink>
-            <NavLink to="/support" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <NavLink 
+              to="/support" 
+              className={({ isActive }) => 
+                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'active' : ''
+                }`
+              }
+            >
               Support
             </NavLink>
-            <NavLink to="/resources" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <NavLink 
+              to="/resources" 
+              className={({ isActive }) => 
+                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'active' : ''
+                }`
+              }
+            >
               Resources
             </NavLink>
-            <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <NavLink 
+              to="/about" 
+              className={({ isActive }) => 
+                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'active' : ''
+                }`
+              }
+            >
               About Us
             </NavLink>
-            <NavLink to="/contact" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <NavLink 
+              to="/contact" 
+              className={({ isActive }) => 
+                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'active' : ''
+                }`
+              }
+            >
               Contact Us
             </NavLink>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg hover:bg-[#ae8300]/10 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            <svg
-              className="w-6 h-6 text-[#ae8300]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          {/* Theme Toggle and Mobile Menu Button */}
+          <div className="flex items-center space-x-4">
+            <motion.button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full ${
+                theme === 'dark' ? 'text-white/70 hover:text-[#ae8300]' : 'text-dark/70 hover:text-[#ae8300]'
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-moon' : 'fa-sun'} text-xl`}></i>
+            </motion.button>
+
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-[#ae8300]/10 transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              <svg
+                className="w-6 h-6 text-[#ae8300]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -127,19 +176,54 @@ export const Navbar = () => {
             >
               <div className="px-4 py-2">
                 <div className="flex flex-col space-y-2">
-                  <NavLink to="/" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                  <NavLink 
+                    to="/" 
+                    className={({ isActive }) => 
+                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'active' : ''
+                      }`
+                    }
+                  >
                     Home
                   </NavLink>
-                  <NavLink to="/support" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                  <NavLink 
+                    to="/support" 
+                    className={({ isActive }) => 
+                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'active' : ''
+                      }`
+                    }
+                  >
                     Support
                   </NavLink>
-                  <NavLink to="/resources" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                  <NavLink 
+                    to="/resources" 
+                    className={({ isActive }) => 
+                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'active' : ''
+                      }`
+                    }
+                  >
                     Resources
                   </NavLink>
-                  <NavLink to="/about" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                  <NavLink 
+                    to="/about" 
+                    className={({ isActive }) => 
+                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'active' : ''
+                      }`
+                    }
+                  >
                     About Us
                   </NavLink>
-                  <NavLink to="/contact" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                  <NavLink 
+                    to="/contact" 
+                    className={({ isActive }) => 
+                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'active' : ''
+                      }`
+                    }
+                  >
                     Contact Us
                   </NavLink>
                 </div>
