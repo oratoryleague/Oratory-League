@@ -50,23 +50,25 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-sm rounded-2xl shadow-lg ${
+      className={`fixed bottom-4 z-50 w-full ${
         theme === 'dark' ? 'bg-dark/80' : 'bg-cream/80'
-      } backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50`}
+      } backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800/50`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className="flex justify-between items-center h-16 px-1">
-        {navItems.map((item) => (
-          <NavItem
-            key={item.href}
-            href={item.href}
-            icon={item.icon}
-            label={item.label}
-            isActive={location === item.href}
-          />
-        ))}
+      <div className="container mx-auto">
+        <div className="flex justify-around items-center h-16 px-4">
+          {navItems.map((item) => (
+            <NavItem
+              key={item.href}
+              href={item.href}
+              icon={item.icon}
+              label={item.label}
+              isActive={location === item.href}
+            />
+          ))}
+        </div>
       </div>
     </motion.nav>
   );
