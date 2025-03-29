@@ -12,6 +12,7 @@ import Partners from '@/components/home/Partners';
 import GrandOrateCountdown from '@/components/home/GrandOrateCountdown';
 import SponsorDonate from '@/components/home/SponsorDonate';
 import TopDebaters from '@/components/home/TopDebaters';
+import BottomNav from '@/components/ui/BottomNav';
 
 const Home = () => {
   // Scroll to top on page load
@@ -25,6 +26,7 @@ const Home = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
+      className="relative pb-16"
     >
       <Hero />
       <main>
@@ -40,6 +42,7 @@ const Home = () => {
         <Partners />
         <CallToAction />
       </main>
+      <BottomNav />
     </motion.div>
   );
 };
