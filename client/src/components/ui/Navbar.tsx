@@ -35,7 +35,7 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 cursor-pointer">
             <div className="w-8 h-8 flex items-center justify-center">
-              <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
+                <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-[#ae8300] font-bold font-['Boldonse']">Oratory League</span>
           </Link>
@@ -55,7 +55,7 @@ export const Navbar = () => {
                 }`}
               >
                 {item.label}
-              </Link>
+            </Link>
             ))}
           </div>
 
@@ -92,13 +92,13 @@ export const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ x: '-100%' }}
+            initial={{ x: '100%' }}
             animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
+            exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-            className={`fixed inset-y-0 left-0 w-64 ${
+            className={`fixed inset-y-0 right-0 w-64 ${
               theme === 'dark' ? 'bg-dark' : 'bg-cream'
-            } border-r border-[#ae8300]/30 shadow-lg`}
+            } border-l border-[#ae8300]/30 shadow-lg`}
           >
             <div className="flex flex-col h-full pt-16">
               {navItems.map((item) => (
@@ -114,7 +114,7 @@ export const Navbar = () => {
                   }`}
                 >
                   {item.label}
-                </Link>
+              </Link>
               ))}
             </div>
           </motion.div>

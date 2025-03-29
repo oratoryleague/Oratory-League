@@ -284,14 +284,14 @@
 
   .floating-nav {
     position: fixed;
-    top: 7px;
+    top: 5px;
     left: 0;
     right: 0;
     margin: 0 auto;
     z-index: 1000;
-    border-radius: 15px;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 6px 20px;
+    padding: 4px 20px;
     width: 95%;
     max-width: 1400px;
     @apply bg-cream dark:bg-dark;
