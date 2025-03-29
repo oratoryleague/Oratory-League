@@ -123,7 +123,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   return (
     <Link href={href}>
       <motion.a
-        className="flex flex-col items-center justify-center relative py-2 w-[72px]"
+        className="flex flex-col items-center justify-center relative py-2 w-[64px]"
         whileHover={{ scale: 1.05 }}
         onClick={handleClick}
       >
@@ -154,7 +154,7 @@ export const BottomNav = () => {
     { href: '/search', icon: 'fa-solid fa-magnifying-glass', label: 'Search' },
     { href: '/orators', icon: 'fa-solid fa-users', label: 'Orators' },
     { href: '/events', icon: 'fa-solid fa-calendar', label: 'Events' },
-    { href: '/notifications', icon: 'fa-solid fa-bell', label: 'Notifications' },
+    { href: '/notifications', icon: 'fa-solid fa-bell', label: 'New' },
     { href: '/profile', icon: 'fa-solid fa-user', label: 'Profile' },
   ];
 
@@ -165,16 +165,18 @@ export const BottomNav = () => {
       } border border-[#ae8300]/30 rounded-t-2xl`}
     >
       <div className="container mx-auto">
-        <div className="flex justify-between items-center h-16 px-8">
-          {navItems.map((item) => (
-            <NavItem
-              key={item.href}
-              href={item.href}
-              icon={item.icon}
-              label={item.label}
-              isActive={location === item.href}
-            />
-          ))}
+        <div className="flex items-center justify-center h-16">
+          <div className="flex items-center justify-between w-full max-w-[400px] px-4">
+            {navItems.map((item) => (
+              <NavItem
+                key={item.href}
+                href={item.href}
+                icon={item.icon}
+                label={item.label}
+                isActive={location === item.href}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </nav>
