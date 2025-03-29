@@ -24,6 +24,28 @@ const AppContent = () => {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
+  const hasHeroSection = [
+    '/',
+    '/about',
+    '/contact',
+    '/search',
+    '/orators',
+    '/events',
+    '/notifications',
+    '/profile',
+    '/code-of-conduct',
+    '/training-programs',
+    '/terms-of-service',
+    '/report-misconduct',
+    '/privacy-policy',
+    '/our-history',
+    '/mission-vision',
+    '/member-benefits',
+    '/leadership',
+    '/join',
+    '/global-chapters'
+  ].includes(location.pathname);
+
   useEffect(() => {
     // Simulate initial load delay
     const timer = setTimeout(() => {
@@ -41,7 +63,7 @@ const AppContent = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pb-24 pt-20">
+      <main className={`flex-grow pb-24 ${hasHeroSection ? '' : 'pt-20'}`}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
