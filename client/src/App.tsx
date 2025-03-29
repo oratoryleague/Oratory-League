@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { ThemeProvider } from './lib/theme';
+import { ThemeProvider } from './lib/theme.tsx';
 import { AuthProvider } from './lib/auth';
 import { ErrorBoundary } from './components/ui/ErrorBoundary';
-import { LoadingScreen } from './components/ui/LoadingScreen';
+import LoadingScreen from './components/ui/LoadingScreen';
 import { Navbar } from './components/ui/Navbar';
 import { Footer } from './components/ui/Footer';
 import BottomNav from './components/ui/BottomNav';
