@@ -13,7 +13,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   return (
     <Link href={href}>
       <motion.a
-        className="flex flex-col items-center relative py-2 px-4"
+        className="flex flex-col items-center relative py-2 px-2"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -50,14 +50,14 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md rounded-2xl shadow-lg ${
+      className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-sm rounded-2xl shadow-lg ${
         theme === 'dark' ? 'bg-dark/80' : 'bg-cream/80'
       } backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className="flex justify-around items-center h-16 px-2">
+      <div className="flex justify-between items-center h-16 px-1">
         {navItems.map((item) => (
           <NavItem
             key={item.href}
