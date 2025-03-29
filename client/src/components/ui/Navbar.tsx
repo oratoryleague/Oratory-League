@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'wouter';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
@@ -7,12 +7,17 @@ import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
-  const { theme } = useTheme();
+  const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const { scrollDirection, scrollY } = useScrollDirection();
 
+  // Close menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const isActive = (path: string) => {
-    return location === path;
+    return location.pathname === path;
   };
 
   const navBgClass = theme === 'dark' 
@@ -31,105 +36,73 @@ export const Navbar = () => {
     return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
   };
 
+  const navItems = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
   return (
     <motion.nav
-      className="floating-nav"
+      className={`fixed top-0 z-50 w-full ${theme === 'dark' ? 'bg-dark' : 'bg-cream'} border-b border-[#ae8300]/30`}
       initial={{ y: 0 }}
       animate={{ 
         y: scrollDirection === 'down' && scrollY > 100 ? -100 : 0 
       }}
       transition={{ duration: 0.3 }}
     >
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/">
-            <motion.a
-              className="flex items-center space-x-2 group cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                className="w-8 h-8 flex items-center justify-center"
-                whileHover={{ rotate: 45 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
-              </motion.div>
-              <motion.span
-                className="text-gold font-bold font-['Boldonse']"
-                transition={{ duration: 0.3 }}
-              >
-                Oratory League
-              </motion.span>
-            </motion.a>
+          <Link to="/" className="flex items-center space-x-2 cursor-pointer">
+            <div className="w-8 h-8 flex items-center justify-center">
+              <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link href="/">
-              <a className={navItemClass("/")}>Home</a>
-            </Link>
-            <Link href="/sponsorships">
-              <a className={navItemClass("/sponsorships")}>Support</a>
-            </Link>
-            <Link href="/resources">
-              <a className={navItemClass("/resources")}>Resources</a>
-            </Link>
-            <Link href="/about-us">
-              <a className={navItemClass("/about-us")}>About Us</a>
-            </Link>
-            <Link href="/contact-us">
-              <a className={navItemClass("/contact-us")}>Contact</a>
-            </Link>
-            <Link href="/join">
-              <motion.a
-                className="bg-gold text-dark px-6 py-2 font-medium rounded-full hover:bg-goldLight transition-colors cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                to={item.href}
+                className={`text-sm font-medium transition-colors ${
+                  location.pathname === item.href
+                    ? 'text-[#ae8300]'
+                    : theme === 'dark'
+                    ? 'text-white/70 hover:text-[#ae8300]'
+                    : 'text-dark/70 hover:text-[#ae8300]'
+                }`}
               >
-                Join Now
-              </motion.a>
-            </Link>
+                {item.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile Navigation */}
+          <div className="flex items-center space-x-4">
+            {/* Theme Toggle Button */}
             <motion.button
-              className={`${navTextClass} hover:text-gold transition-colors focus:outline-none`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              whileTap={{ scale: 0.9 }}
+              onClick={toggleTheme}
+              className={`p-2 rounded-full ${
+                theme === 'dark' ? 'text-white/70 hover:text-[#ae8300]' : 'text-dark/70 hover:text-[#ae8300]'
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {mobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-              )}
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'} text-xl`}></i>
+            </motion.button>
+
+            {/* Menu Button */}
+            <motion.button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 rounded-full ${
+                theme === 'dark' ? 'text-white/70 hover:text-[#ae8300]' : 'text-dark/70 hover:text-[#ae8300]'
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <i className="fa-solid fa-bars text-xl"></i>
             </motion.button>
           </div>
         </div>
@@ -139,61 +112,30 @@ export const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className={`md:hidden mx-auto mt-2 ${theme === 'dark' ? 'bg-darkAccent' : 'bg-creamLight'} p-4 shadow-lg rounded-lg max-w-[calc(100%-2rem)]`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            className={`fixed inset-y-0 left-0 w-64 ${
+              theme === 'dark' ? 'bg-dark' : 'bg-cream'
+            } border-r border-[#ae8300]/30 shadow-lg`}
           >
-            <div className="flex flex-col space-y-4">
-              <Link href="/">
-                <a 
-                  className={`p-2 ${isActive('/') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
+            <div className="flex flex-col h-full pt-16">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={`px-6 py-3 text-sm font-medium transition-colors ${
+                    location.pathname === item.href
+                      ? 'text-[#ae8300]'
+                      : theme === 'dark'
+                      ? 'text-white/70 hover:text-[#ae8300]'
+                      : 'text-dark/70 hover:text-[#ae8300]'
+                  }`}
                 >
-                  Home
-                </a>
-              </Link>
-              <Link href="/sponsorships">
-                <a 
-                  className={`p-2 ${isActive('/sponsorships') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Support
-                </a>
-              </Link>
-              <Link href="/resources">
-                <a 
-                  className={`p-2 ${isActive('/resources') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Resources
-                </a>
-              </Link>
-              <Link href="/about-us">
-                <a 
-                  className={`p-2 ${isActive('/about-us') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About Us
-                </a>
-              </Link>
-              <Link href="/contact-us">
-                <a 
-                  className={`p-2 ${isActive('/contact-us') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Contact
-                </a>
-              </Link>
-              <Link href="/join">
-                <a 
-                  className={`p-2 ${isActive('/join') ? 'text-gold border-l-2 border-gold' : `${theme === 'dark' ? 'text-white' : 'text-dark'} hover:text-gold hover:border-l-2 hover:border-gold`}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Join Now
-                </a>
-              </Link>
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </motion.div>
         )}
