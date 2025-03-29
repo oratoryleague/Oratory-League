@@ -16,78 +16,84 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* About OL */}
           <div className="md:col-span-1">
-            <h4 className="text-lg font-bold text-gold mb-3">About OL</h4>
-            <ul className="space-y-1.5">
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/mission-vision" className="text-sm hover:text-gold transition-colors">
-                  Mission & Vision
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/leadership" className="text-sm hover:text-gold transition-colors">
-                  Leadership
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/our-history" className="text-sm hover:text-gold transition-colors">
-                  Our History
-                </Link>
-              </motion.li>
-            </ul>
+            <div className="space-y-2">
+              <h3 className="text-sm font-semibold text-[#ae8300]">About Us</h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link to="/missionvision" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Mission & Vision
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/leadership" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Leadership
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ourhistory" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Our History
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           
           {/* Membership */}
           <div className="md:col-span-1">
-            <h4 className="text-lg font-bold text-gold mb-3">Membership</h4>
-            <ul className="space-y-1.5">
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/join" className="text-sm hover:text-gold transition-colors">
-                  Join OL
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/member-benefits" className="text-sm hover:text-gold transition-colors">
-                  Member Benefits
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/training-programs" className="text-sm hover:text-gold transition-colors">
-                  Training Programs
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/global-chapters" className="text-sm hover:text-gold transition-colors">
-                  Global Chapters
-                </Link>
-              </motion.li>
-            </ul>
+            <div className="space-y-2">
+              <h3 className="text-sm font-semibold text-[#ae8300]">Membership</h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link to="/joinol" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Join OL
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/memberbenefits" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Member Benefits
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/trainingprograms" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Training Programs
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/globalchapters" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Global Chapters
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           
           {/* Legal */}
           <div className="md:col-span-1">
-            <h4 className="text-lg font-bold text-gold mb-3">Legal</h4>
-            <ul className="space-y-1.5">
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/privacy-policy" className="text-sm hover:text-gold transition-colors">
-                  Privacy Policy
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/terms-of-service" className="text-sm hover:text-gold transition-colors">
-                  Terms of Service
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/code-of-conduct" className="text-sm hover:text-gold transition-colors">
-                  Code of Conduct
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <Link to="/report-misconduct" className="text-sm hover:text-gold transition-colors">
-                  Report Misconduct
-                </Link>
-              </motion.li>
-            </ul>
+            <div className="space-y-2">
+              <h3 className="text-sm font-semibold text-[#ae8300]">Legal</h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link to="/privacypolicy" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/termsofservice" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/codeofconduct" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Code of Conduct
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/reportmisconduct" className={`text-sm ${textClass} hover:text-[#ae8300] transition-colors`}>
+                    Report Misconduct
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         
