@@ -25,7 +25,7 @@ export const Navbar = () => {
     <motion.nav
       className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
-      } border border-[#ae8300]/30 rounded-[2px] shadow-lg`}
+      } border border-[#ae8300]/30 rounded-[4px] shadow-lg`}
       initial={{ y: 0 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
@@ -70,7 +70,7 @@ export const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-circle-half-stroke'} text-xl`}></i>
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-moon' : 'fa-circle-half-stroke'} text-xl`}></i>
             </motion.button>
 
             {/* Menu Button */}
