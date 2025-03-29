@@ -20,7 +20,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
       >
         {isActive && (
           <motion.div
-            className="absolute -bottom-1 w-16 h-16"
+            className="absolute -bottom-1 w-16 h-20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -32,8 +32,8 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
             />
           </motion.div>
         )}
-        <i className={`${icon} text-xl mb-1 ${isActive ? 'text-gold' : 'text-gray-500'}`}></i>
-        <span className={`text-xs ${isActive ? 'text-gold' : 'text-gray-500'}`}>{label}</span>
+        <i className={`${icon} text-xl mb-1 ${isActive ? 'text-white' : 'text-gray-500'}`}></i>
+        <span className={`text-xs ${isActive ? 'text-white' : 'text-gray-500'}`}>{label}</span>
       </motion.a>
     </Link>
   );
