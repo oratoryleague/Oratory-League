@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/lib/theme';
+import { useAuth } from '@/lib/auth';
+import { Navbar } from '@/components/ui/Navbar';
+import { Footer } from '@/components/ui/Footer';
+import { BottomNav } from '@/components/ui/BottomNav';
 import Hero from '@/components/home/Hero';
 import IntroSection from '@/components/home/IntroSection';
 import WomensMonth from '@/components/home/WomensMonth';
@@ -12,7 +17,7 @@ import Partners from '@/components/home/Partners';
 import GrandOrateCountdown from '@/components/home/GrandOrateCountdown';
 import SponsorDonate from '@/components/home/SponsorDonate';
 import TopDebaters from '@/components/home/TopDebaters';
-import BottomNav from '@/components/ui/BottomNav';
+import Features from '@/components/home/Features';
 
 const Home = () => {
   // Scroll to top on page load
