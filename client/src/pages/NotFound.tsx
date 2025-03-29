@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import BottomNav from '@/components/ui/BottomNav';
+import { BottomNav } from '@/components/ui/BottomNav';
 
 const NotFound = () => {
   return (

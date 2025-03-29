@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import BottomNav from '@/components/ui/BottomNav';
+import { BottomNav } from '@/components/ui/BottomNav';
 
 const About = () => {
   return (
