@@ -57,14 +57,14 @@ export const Navbar = () => {
       animate={{ y: scrollDirection === 'down' ? -100 : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <div className="container mx-auto px-4">
+      <div className="w-full px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <img src={logoImage} alt="Oratory League Logo" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
               Home
             </NavLink>
@@ -84,7 +84,7 @@ export const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-[#ae8300]/10 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-[#ae8300]/10 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -121,24 +121,28 @@ export const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden"
+              className={`absolute top-full left-0 right-0 ${
+                theme === 'dark' ? 'bg-dark' : 'bg-cream'
+              } border border-[#ae8300]/30 rounded-b-[14px] shadow-lg lg:hidden`}
             >
-              <div className="py-4 space-y-4">
-                <NavLink to="/" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
-                  Home
-                </NavLink>
-                <NavLink to="/support" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
-                  Support
-                </NavLink>
-                <NavLink to="/resources" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
-                  Resources
-                </NavLink>
-                <NavLink to="/about" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
-                  About Us
-                </NavLink>
-                <NavLink to="/contact" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
-                  Contact Us
-                </NavLink>
+              <div className="px-4 py-2">
+                <div className="flex flex-col space-y-2">
+                  <NavLink to="/" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                    Home
+                  </NavLink>
+                  <NavLink to="/support" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                    Support
+                  </NavLink>
+                  <NavLink to="/resources" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                    Resources
+                  </NavLink>
+                  <NavLink to="/about" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                    About Us
+                  </NavLink>
+                  <NavLink to="/contact" className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}>
+                    Contact Us
+                  </NavLink>
+                </div>
               </div>
             </motion.div>
           )}
