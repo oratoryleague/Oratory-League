@@ -50,14 +50,14 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl rounded-2xl shadow-lg ${
+      className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md rounded-2xl shadow-lg ${
         theme === 'dark' ? 'bg-dark/80' : 'bg-cream/80'
       } backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className="flex justify-around items-center h-16 px-4">
+      <div className="flex justify-around items-center h-16 px-2">
         {navItems.map((item) => (
           <NavItem
             key={item.href}
