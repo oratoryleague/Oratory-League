@@ -123,13 +123,13 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   return (
     <Link href={href}>
       <motion.a
-        className="flex flex-col items-center justify-center relative py-2 px-2 w-full"
+        className="flex flex-col items-center justify-center relative py-2 w-[72px]"
         whileHover={{ scale: 1.05 }}
         onClick={handleClick}
       >
         {isActive && (
           <motion.div
-            className="absolute inset-0 w-[72px] h-[calc(100%-4px)] my-[2px] rounded-full bg-[#ae8300]/10"
+            className="absolute inset-0 w-full h-[calc(100%-4px)] my-[2px] rounded-full bg-[#ae8300]/10"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -165,7 +165,7 @@ export const BottomNav = () => {
       } border border-[#ae8300]/30 rounded-t-2xl`}
     >
       <div className="container mx-auto">
-        <div className="flex justify-around items-center h-16 px-4">
+        <div className="flex justify-between items-center h-16 px-8">
           {navItems.map((item) => (
             <NavItem
               key={item.href}
