@@ -160,9 +160,9 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-4 left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-[400px] ${
+      className={`fixed bottom-4 left-0 right-0 mx-auto w-[calc(100%-2rem)] ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
-      } border border-[#ae8300]/30 rounded-full shadow-lg`}
+      } border border-[#ae8300]/30 rounded-t-2xl`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
