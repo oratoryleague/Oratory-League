@@ -10,7 +10,7 @@ interface NavItemProps {
   isActive: boolean;
 }
 
-const SearchIcon = ({ isActive }: { isActive: boolean }) => {
+const SearchIcon = ({ isActive, isClicked }: { isActive: boolean; isClicked: boolean }) => {
   return (
     <motion.div
       className="relative w-6 h-6 flex items-center justify-center"
@@ -18,7 +18,7 @@ const SearchIcon = ({ isActive }: { isActive: boolean }) => {
     >
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        animate={isActive ? { rotate: 360 } : { rotate: 0 }}
+        animate={isClicked ? { rotate: 360 } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <i className={`fa-solid fa-magnifying-glass text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
@@ -27,7 +27,7 @@ const SearchIcon = ({ isActive }: { isActive: boolean }) => {
   );
 };
 
-const OratorsIcon = ({ isActive }: { isActive: boolean }) => {
+const OratorsIcon = ({ isActive, isClicked }: { isActive: boolean; isClicked: boolean }) => {
   return (
     <motion.div
       className="relative w-6 h-6 flex items-center justify-center"
@@ -35,7 +35,7 @@ const OratorsIcon = ({ isActive }: { isActive: boolean }) => {
     >
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        animate={isActive ? { rotate: 360 } : { rotate: 0 }}
+        animate={isClicked ? { rotate: 360 } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <i className={`fa-solid fa-users text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
@@ -44,7 +44,7 @@ const OratorsIcon = ({ isActive }: { isActive: boolean }) => {
   );
 };
 
-const EventsIcon = ({ isActive }: { isActive: boolean }) => {
+const EventsIcon = ({ isActive, isClicked }: { isActive: boolean; isClicked: boolean }) => {
   return (
     <motion.div
       className="relative w-6 h-6 flex items-center justify-center"
@@ -52,7 +52,7 @@ const EventsIcon = ({ isActive }: { isActive: boolean }) => {
     >
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        animate={isActive ? { y: [0, -10, 0] } : { y: 0 }}
+        animate={isClicked ? { y: [0, -10, 0] } : { y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <i className={`fa-solid fa-calendar text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
@@ -61,7 +61,7 @@ const EventsIcon = ({ isActive }: { isActive: boolean }) => {
   );
 };
 
-const NotificationsIcon = ({ isActive }: { isActive: boolean }) => {
+const NotificationsIcon = ({ isActive, isClicked }: { isActive: boolean; isClicked: boolean }) => {
   return (
     <motion.div
       className="relative w-6 h-6 flex items-center justify-center"
@@ -69,7 +69,7 @@ const NotificationsIcon = ({ isActive }: { isActive: boolean }) => {
     >
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        animate={isActive ? { rotate: [0, 15, -15, 0] } : { rotate: 0 }}
+        animate={isClicked ? { rotate: [0, 15, -15, 0] } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <i className={`fa-solid fa-bell text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
@@ -78,7 +78,7 @@ const NotificationsIcon = ({ isActive }: { isActive: boolean }) => {
   );
 };
 
-const ProfileIcon = ({ isActive }: { isActive: boolean }) => {
+const ProfileIcon = ({ isActive, isClicked }: { isActive: boolean; isClicked: boolean }) => {
   return (
     <motion.div
       className="relative w-6 h-6 flex items-center justify-center"
@@ -86,7 +86,7 @@ const ProfileIcon = ({ isActive }: { isActive: boolean }) => {
     >
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        animate={isActive ? { scale: [1, 1.2, 1] } : { scale: 1 }}
+        animate={isClicked ? { scale: [1, 1.2, 1] } : { scale: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <i className={`fa-solid fa-user text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
@@ -106,15 +106,15 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   const getIconComponent = () => {
     switch (icon) {
       case 'fa-solid fa-magnifying-glass':
-        return <SearchIcon isActive={isClicked} />;
+        return <SearchIcon isActive={isActive} isClicked={isClicked} />;
       case 'fa-solid fa-users':
-        return <OratorsIcon isActive={isClicked} />;
+        return <OratorsIcon isActive={isActive} isClicked={isClicked} />;
       case 'fa-solid fa-calendar':
-        return <EventsIcon isActive={isClicked} />;
+        return <EventsIcon isActive={isActive} isClicked={isClicked} />;
       case 'fa-solid fa-bell':
-        return <NotificationsIcon isActive={isClicked} />;
+        return <NotificationsIcon isActive={isActive} isClicked={isClicked} />;
       case 'fa-solid fa-user':
-        return <ProfileIcon isActive={isClicked} />;
+        return <ProfileIcon isActive={isActive} isClicked={isClicked} />;
       default:
         return <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>;
     }
