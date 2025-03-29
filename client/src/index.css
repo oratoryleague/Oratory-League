@@ -317,12 +317,19 @@
   /* Ensure bottom nav stays on top */
   .bottom-nav {
     position: fixed;
-    bottom: 0;
+    bottom: 1rem;
     left: 0;
     right: 0;
     margin: 0 auto;
     z-index: 1000;
     width: 95%;
     max-width: 800px;
+    pointer-events: auto;
+  }
+
+  /* Ensure all other content stays below navs */
+  .content-wrapper {
+    position: relative;
+    z-index: 1;
   }
 }

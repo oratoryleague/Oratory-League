@@ -160,12 +160,12 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-0 left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-[800px] ${
+      className={`bottom-nav ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
       } border border-[#ae8300]/30 rounded-t-2xl shadow-lg`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-center h-16">
