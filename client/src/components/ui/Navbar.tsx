@@ -69,9 +69,9 @@ export const Navbar = () => {
             <NavLink 
               to="/" 
               className={({ isActive }) => 
-                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                  isActive ? 'active' : ''
-                }`
+                `nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
               }
             >
               Home
@@ -79,9 +79,9 @@ export const Navbar = () => {
             <NavLink 
               to="/support" 
               className={({ isActive }) => 
-                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                  isActive ? 'active' : ''
-                }`
+                `nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
               }
             >
               Support
@@ -89,9 +89,9 @@ export const Navbar = () => {
             <NavLink 
               to="/resources" 
               className={({ isActive }) => 
-                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                  isActive ? 'active' : ''
-                }`
+                `nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
               }
             >
               Resources
@@ -99,9 +99,9 @@ export const Navbar = () => {
             <NavLink 
               to="/about" 
               className={({ isActive }) => 
-                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                  isActive ? 'active' : ''
-                }`
+                `nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
               }
             >
               About Us
@@ -109,9 +109,9 @@ export const Navbar = () => {
             <NavLink 
               to="/contact" 
               className={({ isActive }) => 
-                `nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                  isActive ? 'active' : ''
-                }`
+                `nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                  isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
               }
             >
               Contact Us
@@ -138,10 +138,10 @@ export const Navbar = () => {
             >
               <svg
                 className="w-6 h-6 text-[#ae8300]"
-                fill="none"
+                  fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+                  viewBox="0 0 24 24"
+                >
                 {isMenuOpen ? (
                   <path
                     strokeLinecap="round"
@@ -157,15 +157,15 @@ export const Navbar = () => {
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 )}
-              </svg>
+                </svg>
             </button>
-          </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
+      {/* Mobile Menu */}
+      <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
+          <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -179,58 +179,58 @@ export const Navbar = () => {
                   <NavLink 
                     to="/" 
                     className={({ isActive }) => 
-                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                        isActive ? 'active' : ''
-                      }`
+                      `mobile-nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                      } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
                     }
-                  >
-                    Home
+                >
+                  Home
                   </NavLink>
                   <NavLink 
                     to="/support" 
                     className={({ isActive }) => 
-                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                        isActive ? 'active' : ''
-                      }`
+                      `mobile-nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                      } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
                     }
-                  >
-                    Support
+                >
+                  Support
                   </NavLink>
                   <NavLink 
                     to="/resources" 
                     className={({ isActive }) => 
-                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                        isActive ? 'active' : ''
-                      }`
+                      `mobile-nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                      } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
                     }
-                  >
-                    Resources
+                >
+                  Resources
                   </NavLink>
                   <NavLink 
                     to="/about" 
                     className={({ isActive }) => 
-                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                        isActive ? 'active' : ''
-                      }`
+                      `mobile-nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                      } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
                     }
-                  >
-                    About Us
+                >
+                  About Us
                   </NavLink>
                   <NavLink 
                     to="/contact" 
                     className={({ isActive }) => 
-                      `mobile-nav-link relative px-3 py-2 text-[#ae8300] transition-all duration-300 hover:text-[#ae8300] hover:scale-105 ${
-                        isActive ? 'active' : ''
-                      }`
+                      `mobile-nav-link relative px-3 py-2 text-dark/70 transition-all duration-300 ease-in-out hover:text-[#ae8300] hover:scale-105 ${
+                        isActive ? 'text-[#ae8300] bg-[#ae8300]/10 rounded-full' : ''
+                      } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#ae8300] after:transition-all after:duration-300 after:ease-in-out hover:after:w-full`
                     }
                   >
                     Contact Us
                   </NavLink>
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       </div>
     </motion.nav>
   );
