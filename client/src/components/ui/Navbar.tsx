@@ -23,7 +23,7 @@ export const Navbar = () => {
 
   return (
     <motion.nav
-      className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl ${
+      className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl top-2 ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
       } border border-[#ae8300]/30 rounded-[4px] shadow-lg`}
       initial={{ y: 0 }}
