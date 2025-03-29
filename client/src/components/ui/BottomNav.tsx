@@ -13,19 +13,19 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   return (
     <Link href={href}>
       <motion.a
-        className="flex flex-col items-center relative py-2 px-2"
+        className="flex flex-col items-center justify-center relative py-2 px-2 w-full"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         {isActive && (
           <motion.div
-            className="absolute inset-0 w-[85%] h-[85%] rounded-full bg-gradient-to-b from-[#ae8300]/10 to-transparent"
+            className="absolute inset-0 w-full h-full rounded-full bg-[#ae8300]/10"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
           />
         )}
-        <div className="relative z-10 flex flex-col items-center">
+        <div className="relative z-10 flex flex-col items-center justify-center">
           <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
           {isActive && (
             <span className="text-xs text-[#ae8300] mt-1">{label}</span>
