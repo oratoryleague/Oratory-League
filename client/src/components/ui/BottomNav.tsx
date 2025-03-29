@@ -14,13 +14,13 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   return (
     <Link href={href}>
       <motion.a
-        className="flex flex-col items-center relative"
+        className="flex flex-col items-center relative py-2 px-4"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         {isActive && (
           <motion.div
-            className="absolute -bottom-1 w-16 h-20"
+            className="absolute inset-0 w-full h-full"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -28,12 +28,14 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
             <img
               src={highlightImage}
               alt="Active tab highlight"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain filter dark:brightness-75"
             />
           </motion.div>
         )}
-        <i className={`${icon} text-xl mb-1 ${isActive ? 'text-white' : 'text-gray-500'}`}></i>
-        <span className={`text-xs ${isActive ? 'text-white' : 'text-gray-500'}`}>{label}</span>
+        <i className={`${icon} text-xl ${isActive ? 'text-white' : 'text-gray-500'}`}></i>
+        {isActive && (
+          <span className="text-xs text-white mt-1">{label}</span>
+        )}
       </motion.a>
     </Link>
   );
