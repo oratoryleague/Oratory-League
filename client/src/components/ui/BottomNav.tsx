@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
+import { useState } from 'react';
 
 interface NavItemProps {
   href: string;
@@ -12,15 +13,15 @@ interface NavItemProps {
 const SearchIcon = ({ isActive }: { isActive: boolean }) => {
   return (
     <motion.div
-      className="relative w-6 h-6"
+      className="relative w-6 h-6 flex items-center justify-center"
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 flex items-center justify-center"
         animate={isActive ? { rotate: 360 } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <i className="fa-solid fa-magnifying-glass text-xl text-gray-500"></i>
+        <i className={`fa-solid fa-magnifying-glass text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
       </motion.div>
     </motion.div>
   );
@@ -29,15 +30,15 @@ const SearchIcon = ({ isActive }: { isActive: boolean }) => {
 const OratorsIcon = ({ isActive }: { isActive: boolean }) => {
   return (
     <motion.div
-      className="relative w-6 h-6"
+      className="relative w-6 h-6 flex items-center justify-center"
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 flex items-center justify-center"
         animate={isActive ? { rotate: 360 } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <i className="fa-solid fa-users text-xl text-gray-500"></i>
+        <i className={`fa-solid fa-users text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
       </motion.div>
     </motion.div>
   );
@@ -46,15 +47,15 @@ const OratorsIcon = ({ isActive }: { isActive: boolean }) => {
 const EventsIcon = ({ isActive }: { isActive: boolean }) => {
   return (
     <motion.div
-      className="relative w-6 h-6"
+      className="relative w-6 h-6 flex items-center justify-center"
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 flex items-center justify-center"
         animate={isActive ? { y: [0, -10, 0] } : { y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <i className="fa-solid fa-calendar text-xl text-gray-500"></i>
+        <i className={`fa-solid fa-calendar text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
       </motion.div>
     </motion.div>
   );
@@ -63,15 +64,15 @@ const EventsIcon = ({ isActive }: { isActive: boolean }) => {
 const NotificationsIcon = ({ isActive }: { isActive: boolean }) => {
   return (
     <motion.div
-      className="relative w-6 h-6"
+      className="relative w-6 h-6 flex items-center justify-center"
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 flex items-center justify-center"
         animate={isActive ? { rotate: [0, 15, -15, 0] } : { rotate: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <i className="fa-solid fa-bell text-xl text-gray-500"></i>
+        <i className={`fa-solid fa-bell text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
       </motion.div>
     </motion.div>
   );
@@ -80,33 +81,40 @@ const NotificationsIcon = ({ isActive }: { isActive: boolean }) => {
 const ProfileIcon = ({ isActive }: { isActive: boolean }) => {
   return (
     <motion.div
-      className="relative w-6 h-6"
+      className="relative w-6 h-6 flex items-center justify-center"
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 flex items-center justify-center"
         animate={isActive ? { scale: [1, 1.2, 1] } : { scale: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <i className="fa-solid fa-user text-xl text-gray-500"></i>
+        <i className={`fa-solid fa-user text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
       </motion.div>
     </motion.div>
   );
 };
 
 const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 500); // Reset after animation duration
+  };
+
   const getIconComponent = () => {
     switch (icon) {
       case 'fa-solid fa-magnifying-glass':
-        return <SearchIcon isActive={isActive} />;
+        return <SearchIcon isActive={isClicked} />;
       case 'fa-solid fa-users':
-        return <OratorsIcon isActive={isActive} />;
+        return <OratorsIcon isActive={isClicked} />;
       case 'fa-solid fa-calendar':
-        return <EventsIcon isActive={isActive} />;
+        return <EventsIcon isActive={isClicked} />;
       case 'fa-solid fa-bell':
-        return <NotificationsIcon isActive={isActive} />;
+        return <NotificationsIcon isActive={isClicked} />;
       case 'fa-solid fa-user':
-        return <ProfileIcon isActive={isActive} />;
+        return <ProfileIcon isActive={isClicked} />;
       default:
         return <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>;
     }
@@ -117,6 +125,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
       <motion.a
         className="flex flex-col items-center justify-center relative py-2 px-2 w-full"
         whileHover={{ scale: 1.05 }}
+        onClick={handleClick}
       >
         {isActive && (
           <motion.div
