@@ -92,30 +92,31 @@ export const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-            className={`fixed inset-y-0 right-0 w-64 ${
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className={`absolute top-full left-0 right-0 ${
               theme === 'dark' ? 'bg-dark' : 'bg-cream'
-            } border-l border-[#ae8300]/30 shadow-lg`}
+            } border border-[#ae8300]/30 rounded-b-[2px] shadow-lg`}
           >
-            <div className="flex flex-col h-full pt-16">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={`px-6 py-3 text-sm font-medium transition-colors ${
-                    location.pathname === item.href
-                      ? 'text-[#ae8300]'
-                      : theme === 'dark'
-                      ? 'text-white/70 hover:text-[#ae8300]'
-                      : 'text-dark/70 hover:text-[#ae8300]'
-                  }`}
-                >
-                  {item.label}
-              </Link>
-              ))}
+            <div className="container mx-auto px-4 py-2">
+              <div className="flex flex-col space-y-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className={`px-4 py-2 rounded-lg transition-colors ${
+                      location.pathname === item.href
+                        ? 'bg-[#ae8300]/10 text-[#ae8300]'
+                        : 'hover:bg-[#ae8300]/5'
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
