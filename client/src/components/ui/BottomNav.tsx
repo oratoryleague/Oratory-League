@@ -20,7 +20,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
       >
         {isActive && (
           <motion.div
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-[200%] -top-1/2"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -32,10 +32,12 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
             />
           </motion.div>
         )}
-        <i className={`${icon} text-xl ${isActive ? 'text-white' : 'text-gray-500'}`}></i>
-        {isActive && (
-          <span className="text-xs text-white mt-1">{label}</span>
-        )}
+        <div className="relative z-10 flex flex-col items-center">
+          <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
+          {isActive && (
+            <span className="text-xs text-[#ae8300] mt-1">{label}</span>
+          )}
+        </div>
       </motion.a>
     </Link>
   );
