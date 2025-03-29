@@ -20,7 +20,8 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
       >
         {isActive && (
           <motion.div
-            className="absolute inset-0 w-full h-[500%] -top-[200%]"
+            className="absolute inset-0 w-full h-[250%] -top-[75%] !max-h-none !min-h-[250%]"
+            style={{ height: '250%', maxHeight: 'none', minHeight: '250%' }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -28,7 +29,8 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
             <img
               src={highlightImage}
               alt="Active tab highlight"
-              className="w-full h-full object-contain filter dark:brightness-75"
+              className="w-full h-full object-contain filter dark:brightness-75 !max-h-none !min-h-[250%]"
+              style={{ height: '250%', maxHeight: 'none', minHeight: '250%' }}
             />
           </motion.div>
         )}
