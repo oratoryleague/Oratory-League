@@ -2,53 +2,32 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
-import { useScrollDirection } from '@/hooks/useScrollDirection';
 import logoImage from '@/assets/img/logo.png';
 
 export const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-  const { scrollDirection, scrollY } = useScrollDirection();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Close menu when route changes
   useEffect(() => {
-    setMobileMenuOpen(false);
+    setIsMenuOpen(false);
   }, [location.pathname]);
-
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
-
-  const navBgClass = theme === 'dark' 
-    ? 'bg-dark' 
-    : 'bg-cream';
-
-  const navTextClass = theme === 'dark' 
-    ? 'text-white' 
-    : 'text-dark';
-
-  const navItemClass = (path: string) => {
-    const baseClass = 'nav-item font-medium transition-colors';
-    const activeClass = 'text-gold';
-    const inactiveClass = `${navTextClass} hover:text-gold`;
-    
-    return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
-  };
 
   const navItems = [
     { href: '/', label: 'Home' },
+    { href: '/resources', label: 'Resources' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
   ];
 
   return (
     <motion.nav
-      className={`fixed top-0 z-50 w-full ${theme === 'dark' ? 'bg-dark' : 'bg-cream'} border-b border-[#ae8300]/30`}
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-7xl ${
+        theme === 'dark' ? 'bg-dark' : 'bg-cream'
+      } border border-[#ae8300]/30 rounded-full shadow-lg`}
       initial={{ y: 0 }}
-      animate={{ 
-        y: scrollDirection === 'down' && scrollY > 100 ? -100 : 0 
-      }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div className="container mx-auto px-4">
@@ -58,6 +37,7 @@ export const Navbar = () => {
             <div className="w-8 h-8 flex items-center justify-center">
               <img src={logoImage} alt="Oratory League Logo" className="w-full h-full object-contain" />
             </div>
+            <span className="text-[#ae8300] font-bold font-['Boldonse']">Oratory League</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -95,7 +75,7 @@ export const Navbar = () => {
 
             {/* Menu Button */}
             <motion.button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`p-2 rounded-full ${
                 theme === 'dark' ? 'text-white/70 hover:text-[#ae8300]' : 'text-dark/70 hover:text-[#ae8300]'
               }`}
@@ -110,7 +90,7 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {isMenuOpen && (
           <motion.div
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
