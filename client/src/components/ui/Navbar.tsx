@@ -4,10 +4,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import logoImage from '@/assets/img/logo.png';
 
+const useScrollDirection = () => {
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      const direction = scrollY > lastScrollY ? 'down' : 'up';
+      if (direction !== scrollDirection && (Math.abs(scrollY - lastScrollY) > 10)) {
+        setScrollDirection(direction);
+      }
+      setScrollY(scrollY);
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+
+    window.addEventListener('scroll', updateScrollDirection);
+    return () => {
+      window.removeEventListener('scroll', updateScrollDirection);
+    };
+  }, [scrollDirection]);
+
+  return scrollDirection;
+};
+
 export const Navbar = () => {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const scrollDirection = useScrollDirection();
 
   // Close menu when route changes
   useEffect(() => {
@@ -23,15 +50,15 @@ export const Navbar = () => {
 
   return (
     <motion.nav
-      className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl ${
+      className={`floating-nav ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
-      } border border-[#ae8300]/30 rounded-[13px] shadow-lg`}
-      initial={{ y: 0 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
+      } border border-[#ae8300]/30 rounded-[2px] shadow-lg`}
+      initial={{ y: -100 }}
+      animate={{ y: scrollDirection === 'down' ? -100 : 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <div className="w-full px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-12">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 cursor-pointer">
             <div className="w-8 h-8 flex items-center justify-center">
@@ -42,21 +69,26 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === item.href
-                    ? 'text-[#ae8300]'
-                    : theme === 'dark'
-                    ? 'text-white/70 hover:text-[#ae8300]'
-                    : 'text-dark/70 hover:text-[#ae8300]'
-                }`}
-              >
-                {item.label}
+            <Link to="/search" className="nav-item">
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <span>Search</span>
             </Link>
-            ))}
+            <Link to="/orators" className="nav-item">
+              <i className="fa-solid fa-users"></i>
+              <span>Orators</span>
+            </Link>
+            <Link to="/events" className="nav-item">
+              <i className="fa-solid fa-calendar"></i>
+              <span>Events</span>
+            </Link>
+            <Link to="/notifications" className="nav-item">
+              <i className="fa-solid fa-bell"></i>
+              <span>New</span>
+            </Link>
+            <Link to="/profile" className="nav-item">
+              <i className="fa-solid fa-user"></i>
+              <span>Profile</span>
+            </Link>
           </div>
 
           {/* Mobile Navigation */}
@@ -114,7 +146,7 @@ export const Navbar = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
-                  </Link>
+              </Link>
                 ))}
               </div>
             </div>

@@ -167,19 +167,17 @@ export const BottomNav = () => {
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <div className="container mx-auto">
-        <div className="flex items-center justify-center h-16">
-          <div className="flex items-center justify-between w-full max-w-[800px] px-8">
-            {navItems.map((item) => (
-              <NavItem
-                key={item.href}
-                href={item.href}
-                icon={item.icon}
-                label={item.label}
-                isActive={location.pathname === item.href}
-              />
-            ))}
-          </div>
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center">
+          {navItems.map((item) => (
+            <NavItem
+              key={item.href}
+              href={item.href}
+              icon={item.icon}
+              label={item.label}
+              isActive={location.pathname === item.href}
+            />
+          ))}
         </div>
       </div>
     </motion.nav>
