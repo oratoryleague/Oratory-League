@@ -15,7 +15,7 @@ import Contact from './pages/Contact';
 import Search from './pages/Search';
 import Orators from './pages/Orators';
 import Events from './pages/Events';
-import Notifications from './pages/Notifications';
+import New from './pages/New';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
@@ -72,7 +72,7 @@ const AppContent = () => {
             <Route path="/search" element={<Search />} />
             <Route path="/orators" element={<Orators />} />
             <Route path="/events" element={<Events />} />
-            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/notifications" element={<New />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
