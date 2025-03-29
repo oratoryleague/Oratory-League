@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'wouter';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 import { useState } from 'react';
@@ -121,8 +121,8 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   };
 
   return (
-    <Link href={href}>
-      <motion.a
+    <Link to={href} className="flex flex-col items-center justify-center relative py-2 w-[64px]">
+      <motion.div
         className="flex flex-col items-center justify-center relative py-2 w-[64px]"
         whileHover={{ scale: 1.05 }}
         onClick={handleClick}
@@ -141,13 +141,13 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
             <span className="text-xs text-[#ae8300] mt-1">{label}</span>
           )}
         </div>
-      </motion.a>
+      </motion.div>
     </Link>
   );
 };
 
 export const BottomNav = () => {
-  const [location] = useLocation();
+  const location = useLocation();
   const { theme } = useTheme();
 
   const navItems = [
@@ -173,7 +173,7 @@ export const BottomNav = () => {
                 href={item.href}
                 icon={item.icon}
                 label={item.label}
-                isActive={location === item.href}
+                isActive={location.pathname === item.href}
               />
             ))}
           </div>
