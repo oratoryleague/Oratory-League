@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'wouter';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/lib/theme';
 
 interface NavItemProps {
@@ -9,13 +9,114 @@ interface NavItemProps {
   isActive: boolean;
 }
 
+const SearchIcon = ({ isActive }: { isActive: boolean }) => {
+  return (
+    <motion.div
+      className="relative w-6 h-6"
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        animate={isActive ? { rotate: 360 } : { rotate: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <i className="fa-solid fa-magnifying-glass text-xl text-gray-500"></i>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const OratorsIcon = ({ isActive }: { isActive: boolean }) => {
+  return (
+    <motion.div
+      className="relative w-6 h-6"
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        animate={isActive ? { rotate: 360 } : { rotate: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <i className="fa-solid fa-users text-xl text-gray-500"></i>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const EventsIcon = ({ isActive }: { isActive: boolean }) => {
+  return (
+    <motion.div
+      className="relative w-6 h-6"
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        animate={isActive ? { y: [0, -10, 0] } : { y: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <i className="fa-solid fa-calendar text-xl text-gray-500"></i>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const NotificationsIcon = ({ isActive }: { isActive: boolean }) => {
+  return (
+    <motion.div
+      className="relative w-6 h-6"
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        animate={isActive ? { rotate: [0, 15, -15, 0] } : { rotate: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <i className="fa-solid fa-bell text-xl text-gray-500"></i>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const ProfileIcon = ({ isActive }: { isActive: boolean }) => {
+  return (
+    <motion.div
+      className="relative w-6 h-6"
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        animate={isActive ? { scale: [1, 1.2, 1] } : { scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <i className="fa-solid fa-user text-xl text-gray-500"></i>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
+  const getIconComponent = () => {
+    switch (icon) {
+      case 'fa-solid fa-magnifying-glass':
+        return <SearchIcon isActive={isActive} />;
+      case 'fa-solid fa-users':
+        return <OratorsIcon isActive={isActive} />;
+      case 'fa-solid fa-calendar':
+        return <EventsIcon isActive={isActive} />;
+      case 'fa-solid fa-bell':
+        return <NotificationsIcon isActive={isActive} />;
+      case 'fa-solid fa-user':
+        return <ProfileIcon isActive={isActive} />;
+      default:
+        return <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>;
+    }
+  };
+
   return (
     <Link href={href}>
       <motion.a
         className="flex flex-col items-center justify-center relative py-2 px-2 w-full"
         whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
       >
         {isActive && (
           <motion.div
@@ -26,7 +127,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
           />
         )}
         <div className="relative z-10 flex flex-col items-center justify-center">
-          <i className={`${icon} text-xl ${isActive ? 'text-[#ae8300]' : 'text-gray-500'}`}></i>
+          {getIconComponent()}
           {isActive && (
             <span className="text-xs text-[#ae8300] mt-1">{label}</span>
           )}
