@@ -1,70 +1,78 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'wouter';
 import { motion } from 'framer-motion';
-import { Search, Users, Calendar, Bell, User } from 'lucide-react';
+import { useTheme } from '@/lib/theme';
+import highlightImage from '@/assets/img/highlight.png';
 
 interface NavItemProps {
-  icon: React.ReactNode;
+  href: string;
+  icon: string;
   label: string;
-  path: string;
   isActive: boolean;
 }
 
-const NavItem = ({ icon, label, path, isActive }: NavItemProps) => {
+const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
   return (
-    <Link
-      to={path}
-      className="flex flex-col items-center justify-center w-full h-full relative"
-    >
-      <div className="relative">
-        {icon}
+    <Link href={href}>
+      <motion.a
+        className="flex flex-col items-center relative"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
         {isActive && (
           <motion.div
-            layoutId="activeTab"
-            className="absolute -inset-2 bg-gradient-to-r from-gold/20 to-gold/10 rounded-full -z-10"
-            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-          />
+            className="absolute -bottom-1 w-16 h-16"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <img
+              src={highlightImage}
+              alt="Active tab highlight"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
         )}
-      </div>
-      <span className={`text-xs mt-1 ${isActive ? 'text-gold' : 'text-gray-500 dark:text-gray-400'}`}>
-        {label}
-      </span>
+        <i className={`${icon} text-xl mb-1 ${isActive ? 'text-gold' : 'text-gray-500'}`}></i>
+        <span className={`text-xs ${isActive ? 'text-gold' : 'text-gray-500'}`}>{label}</span>
+      </motion.a>
     </Link>
   );
 };
 
-const BottomNav = () => {
-  const location = useLocation();
+export const BottomNav = () => {
+  const [location] = useLocation();
+  const { theme } = useTheme();
 
   const navItems = [
-    { icon: <Search className="w-6 h-6" />, label: 'Search', path: '/search' },
-    { icon: <Users className="w-6 h-6" />, label: 'Orators', path: '/orators' },
-    { icon: <Calendar className="w-6 h-6" />, label: 'Events', path: '/events' },
-    { icon: <Bell className="w-6 h-6" />, label: 'Notifications', path: '/notifications' },
-    { icon: <User className="w-6 h-6" />, label: 'Profile', path: '/profile' },
+    { href: '/search', icon: 'fa-solid fa-magnifying-glass', label: 'Search' },
+    { href: '/orators', icon: 'fa-solid fa-users', label: 'Orators' },
+    { href: '/events', icon: 'fa-solid fa-calendar', label: 'Events' },
+    { href: '/notifications', icon: 'fa-solid fa-bell', label: 'Notifications' },
+    { href: '/profile', icon: 'fa-solid fa-user', label: 'Profile' },
   ];
 
   return (
     <motion.nav
+      className={`fixed bottom-0 left-0 right-0 z-50 ${
+        theme === 'dark' ? 'bg-dark/95' : 'bg-cream/95'
+      } backdrop-blur-sm border-t border-gray-200 dark:border-gray-800`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      exit={{ y: 100 }}
-      className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800 z-[100] shadow-lg"
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className="max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-5 h-16">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-around items-center h-16">
           {navItems.map((item) => (
             <NavItem
-              key={item.path}
+              key={item.href}
+              href={item.href}
               icon={item.icon}
               label={item.label}
-              path={item.path}
-              isActive={location.pathname === item.path}
+              isActive={location === item.href}
             />
           ))}
         </div>
       </div>
     </motion.nav>
   );
-};
-
-export default BottomNav; 
+}; 
