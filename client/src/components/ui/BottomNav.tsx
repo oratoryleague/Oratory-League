@@ -20,7 +20,7 @@ const NavItem = ({ href, icon, label, isActive }: NavItemProps) => {
       >
         {isActive && (
           <motion.div
-            className="absolute inset-0 w-full h-[300%] -top-full"
+            className="absolute inset-0 w-full h-[500%] -top-[200%]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
