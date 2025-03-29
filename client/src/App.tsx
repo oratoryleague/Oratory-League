@@ -63,7 +63,7 @@ const AppContent = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className={`flex-grow pb-24 ${hasHeroSection ? '' : 'pt-20'}`}>
+      <main className={`flex-grow ${hasHeroSection ? '' : 'pt-20'}`}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
@@ -78,8 +78,11 @@ const AppContent = () => {
           </Routes>
         </AnimatePresence>
       </main>
+      <div className="relative">
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent dark:from-dark"></div>
+        <Footer />
+      </div>
       <BottomNav />
-      <Footer />
       <Toaster position="top-right" />
     </div>
   );
