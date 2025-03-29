@@ -41,7 +41,7 @@ const AppContent = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow pb-16">
+      <main className="flex-grow pb-16 pt-20">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
