@@ -25,7 +25,7 @@ export const Navbar = () => {
     <motion.nav
       className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
-      } border border-[#ae8300]/30 rounded-full shadow-lg`}
+      } border border-[#ae8300]/30 rounded-[2px] shadow-lg`}
       initial={{ y: 0 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
@@ -82,7 +82,7 @@ export const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <i className="fa-solid fa-bars text-xl"></i>
+              <i className={`fa-solid ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} text-xl`}></i>
             </motion.button>
           </div>
         </div>
