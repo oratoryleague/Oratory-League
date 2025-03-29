@@ -23,9 +23,9 @@ export const Navbar = () => {
 
   return (
     <motion.nav
-      className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl top-2 ${
+      className={`floating-nav z-50 w-[calc(100%-2rem)] max-w-5xl ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
-      } border border-[#ae8300]/30 rounded-[4px] shadow-lg`}
+      } border border-[#ae8300]/30 rounded-[13px] shadow-lg`}
       initial={{ y: 0 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
