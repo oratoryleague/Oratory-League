@@ -287,12 +287,17 @@
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 50;
+    z-index: 1000;
     height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2px 20px;
+    width: 95%;
+    max-width: 1400px;
   }
 
   /* Ensure content appears below bottom nav */
@@ -306,5 +311,16 @@
   footer {
     position: relative;
     z-index: 1;
+  }
+
+  /* Ensure bottom nav stays on top */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 95%;
+    max-width: 800px;
   }
 }

@@ -70,7 +70,7 @@ export const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <i className={`fa-solid ${theme === 'dark' ? 'fa-moon' : 'fa-circle-half-stroke'} text-xl`}></i>
+              <i className={`fa-solid ${theme === 'dark' ? 'fa-moon' : 'fa-sun'} text-xl`}></i>
             </motion.button>
 
             {/* Menu Button */}

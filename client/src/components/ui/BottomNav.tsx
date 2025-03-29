@@ -160,7 +160,7 @@ export const BottomNav = () => {
 
   return (
     <motion.nav
-      className={`fixed bottom-0 left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-[400px] ${
+      className={`fixed bottom-0 left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-[800px] ${
         theme === 'dark' ? 'bg-dark' : 'bg-cream'
       } border border-[#ae8300]/30 rounded-t-2xl shadow-lg`}
       initial={{ y: 100 }}
@@ -169,7 +169,7 @@ export const BottomNav = () => {
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-center h-16">
-          <div className="flex items-center justify-between w-full max-w-[400px] px-4">
+          <div className="flex items-center justify-between w-full max-w-[800px] px-8">
             {navItems.map((item) => (
               <NavItem
                 key={item.href}
